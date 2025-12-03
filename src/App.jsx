@@ -1,35 +1,64 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+﻿import React from 'react';
+import './App.css';
+import TechnologyCard from './components/TechnologyCard';
+import ProgressHeader from './components/ProgressHeader';
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+    const technologies = [
+        {
+            id: 1,
+            title: 'React Components',
+            description: 'Изучение функциональных и классовых компонентов, их жизненного цикла',
+            status: 'completed'
+        },
+        {
+            id: 2,
+            title: 'JSX Syntax',
+            description: 'Освоение синтаксиса JSX, условного рендеринга и списков',
+            status: 'completed'
+        },
+        {
+            id: 3,
+            title: 'State Management',
+            description: 'Работа с состоянием компонентов, использование хуков useState и useEffect',
+            status: 'in-progress'
+        },
+        {
+            id: 4,
+            title: 'Props & Context',
+            description: 'Передача данных между компонентами, использование Context API',
+            status: 'not-started'
+        },
+        {
+            id: 5,
+            title: 'React Router',
+            description: 'Настройка маршрутизации в React-приложениях',
+            status: 'not-started'
+        },
+        {
+            id: 6,
+            title: 'Custom Hooks',
+            description: 'Создание собственных хуков для переиспользования логики',
+            status: 'not-started'
+        }
+    ];
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    return (
+        <div className="app">
+            <ProgressHeader technologies={technologies} />
 
-export default App
+            <div className="technologies-grid">
+                {technologies.map(tech => (
+                    <TechnologyCard
+                        key={tech.id}
+                        title={tech.title}
+                        description={tech.description}
+                        status={tech.status}
+                    />
+                ))}
+            </div>
+        </div>
+    );
+};
+
+export default App;
