@@ -1,0 +1,306 @@
+/*.quick-actions {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    flex: 1;
+    min-width: 300px;
+}
+
+    .quick-actions h3 {
+        margin: 0 0 20px 0;
+        color: #333;
+        text-align: center;
+        font-size: 1.3em;
+    }
+
+.actions-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.action-btn {
+    padding: 15px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+    .action-btn.mark-all {
+        background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+        color: white;
+    }
+
+    .action-btn.reset-all {
+        background: linear-gradient(135deg, #FF9800 0%, #f57c00 100%);
+        color: white;
+    }
+
+    .action-btn.random-next {
+        background: linear-gradient(135deg, #2196F3 0%, #1976d2 100%);
+        color: white;
+    }
+
+    .action-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .action-btn:active {
+        transform: translateY(0);
+    }
+
+@media (max-width: 768px) {
+    .quick-actions {
+        width: 100%;
+    }
+}
+*/
+
+/*.quick-actions {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    flex: 1;
+    min-width: 300px;
+}
+
+    .quick-actions h3 {
+        margin: 0 0 20px 0;
+        color: rgba(255, 255, 255, 0.95);
+        text-align: center;
+        font-size: 1.3em;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+.actions-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.action-btn {
+    padding: 16px 24px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+    .action-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        transition: opacity 0.3s ease;
+    }
+
+    .action-btn.mark-all::before {
+        background: linear-gradient(135deg, rgba(76, 175, 80, 0.7), rgba(69, 160, 73, 0.7));
+    }
+
+    .action-btn.reset-all::before {
+        background: linear-gradient(135deg, rgba(255, 152, 0, 0.7), rgba(245, 124, 0, 0.7));
+    }
+
+    .action-btn.random-next::before {
+        background: linear-gradient(135deg, rgba(33, 150, 243, 0.7), rgba(25, 118, 210, 0.7));
+    }
+
+    .action-btn:hover::before {
+        opacity: 0.9;
+    }
+
+.action-btn {
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+    .action-btn:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+
+    .action-btn:active {
+        transform: translateY(-1px);
+    }
+
+@media (max-width: 768px) {
+    .quick-actions {
+        width: 100%;
+    }
+}*/
+
+.quick-actions {
+    background: rgba(0, 10, 0, 0.85);
+    backdrop-filter: blur(5px);
+    border-radius: 0;
+    padding: 25px;
+    box-shadow: 0 0 25px rgba(0, 255, 0, 0.2), inset 0 0 25px rgba(0, 255, 0, 0.1);
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    flex: 1;
+    min-width: 300px;
+    position: relative;
+    overflow: hidden;
+}
+
+    .quick-actions h3 {
+        margin: 0 0 25px 0;
+        color: #0ff;
+        text-align: center;
+        font-size: 1.4em;
+        text-shadow: 0 0 5px #0ff, 0 0 10px #0ff;
+        font-family: 'Roboto Mono', monospace;
+        letter-spacing: 1px;
+        padding: 10px;
+        background: rgba(0, 20, 0, 0.6);
+        border: 1px solid rgba(0, 255, 255, 0.3);
+    }
+
+.actions-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.action-btn {
+    padding: 16px 24px;
+    border: 1px solid;
+    border-radius: 0;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    backdrop-filter: blur(3px);
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 1px;
+    font-family: 'Roboto Mono', monospace;
+    text-transform: uppercase;
+}
+
+    .action-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient( 90deg, transparent, rgba(255, 255, 255, 0.2), transparent );
+        transition: left 0.5s;
+    }
+
+    .action-btn:hover::before {
+        left: 100%;
+    }
+
+    .action-btn.mark-all {
+        background: rgba(0, 40, 0, 0.7);
+        border-color: #4CAF50;
+        color: #4CAF50;
+        text-shadow: 0 0 5px #4CAF50;
+    }
+
+        .action-btn.mark-all:hover {
+            background: rgba(0, 60, 0, 0.9);
+            box-shadow: 0 0 20px rgba(76, 175, 80, 0.4);
+            border-color: #8BC34A;
+        }
+
+    .action-btn.reset-all {
+        background: rgba(40, 0, 0, 0.7);
+        border-color: #FF5722;
+        color: #FF5722;
+        text-shadow: 0 0 5px #FF5722;
+    }
+
+        .action-btn.reset-all:hover {
+            background: rgba(60, 0, 0, 0.9);
+            box-shadow: 0 0 20px rgba(255, 87, 34, 0.4);
+            border-color: #FF9800;
+        }
+
+    .action-btn.random-next {
+        background: rgba(0, 0, 40, 0.7);
+        border-color: #2196F3;
+        color: #2196F3;
+        text-shadow: 0 0 5px #2196F3;
+    }
+
+        .action-btn.random-next:hover {
+            background: rgba(0, 0, 60, 0.9);
+            box-shadow: 0 0 20px rgba(33, 150, 243, 0.4);
+            border-color: #03A9F4;
+        }
+
+    .action-btn:hover {
+        transform: translateY(-3px);
+        animation: glitchButton 0.3s;
+    }
+
+/* Глитч эффект для кнопок */
+@keyframes glitchButton {
+    0%, 100% {
+        transform: translateY(-3px) translateX(0);
+    }
+
+    20% {
+        transform: translateY(-3px) translateX(-1px);
+    }
+
+    40% {
+        transform: translateY(-3px) translateX(1px);
+    }
+
+    60% {
+        transform: translateY(-3px) translateX(-1px);
+    }
+
+    80% {
+        transform: translateY(-3px) translateX(1px);
+    }
+}
+
+.action-btn:active {
+    transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+    .quick-actions {
+        width: 100%;
+    }
+
+    .action-btn {
+        padding: 14px 20px;
+        font-size: 13px;
+    }
+}

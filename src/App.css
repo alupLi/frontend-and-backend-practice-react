@@ -1,4 +1,4 @@
-* {
+/** {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -6,19 +6,31 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-    background: #f5f5f5;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
     padding: 20px;
+    color: #333;
 }
 
 .app {
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
 }
 
 .technologies-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.controls-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    margin: 30px 0;
+    flex-wrap: wrap;
     gap: 20px;
 }
 
@@ -27,8 +39,56 @@ body {
         grid-template-columns: 1fr;
     }
 
-    .stats {
+    .controls-container {
         flex-direction: column;
-        gap: 20px;
+    }
+
+    .app {
+        padding: 10px;
+    }
+}
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.app {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    backdrop-filter: blur(10px); /* Размытие фона за всем контентом */
+}
+
+.technologies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+/* Контейнер для быстрых действий и фильтров */
+.controls-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    margin: 30px 0;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .technologies-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .controls-container {
+        flex-direction: column;
+    }
+
+    .app {
+        padding: 10px;
     }
 }

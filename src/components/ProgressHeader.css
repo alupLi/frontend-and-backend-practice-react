@@ -1,4 +1,4 @@
-.progress-header {
+/*.progress-header {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
     padding: 30px;
@@ -57,4 +57,323 @@
     color: #667eea;
     font-weight: bold;
     font-size: 0.9em;
+}
+*/
+
+/*.progress-header {
+    background: rgba(102, 126, 234, 0.3);
+    backdrop-filter: blur(30px);
+    color: white;
+    padding: 40px 30px;
+    border-radius: 25px;
+    margin-bottom: 40px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}*/
+
+    /* —оздаем эффект переливающегос€ фона дл€ заголовка */
+    /*.progress-header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient( 45deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2), rgba(102, 126, 234, 0.2) );
+        background-size: 300% 300%;
+        animation: gradientShift 8s ease infinite;
+        z-index: -1;
+    }
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.progress-header h1 {
+    margin: 0 0 30px 0;
+    text-align: center;
+    font-size: 2.5em;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(45deg, #fff, #e0e0ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: titleGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow {
+    from {
+        filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+    }
+
+    to {
+        filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.8));
+    }
+}
+
+.stats {
+    display: flex;
+    justify-content: space-around;
+    margin: 35px 0;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    min-width: 120px;
+    transition: all 0.3s ease;
+}
+
+    .stat-item:hover {
+        transform: translateY(-5px);
+        background: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+.stat-number {
+    display: block;
+    font-size: 3em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.stat-label {
+    font-size: 1em;
+    opacity: 0.9;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.progress-bar-container {
+    background: rgba(255, 255, 255, 0.1);
+    height: 40px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 30px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.progress-bar {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7) );
+    height: 100%;
+    border-radius: 20px;
+    transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}*/
+
+    /* Ёффект свечени€ дл€ прогресс-бара */
+    /*.progress-bar::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient( 90deg, transparent, rgba(255, 255, 255, 0.6), transparent );
+        animation: shimmerProgress 2s infinite;
+    }
+
+@keyframes shimmerProgress {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.progress-text {
+    color: #667eea;
+    font-weight: bold;
+    font-size: 1.1em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}*/
+
+.progress-header {
+    background: rgba(0, 10, 0, 0.85);
+    backdrop-filter: blur(5px);
+    color: #0f0;
+    padding: 30px;
+    border-radius: 0;
+    margin-bottom: 30px;
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.2), inset 0 0 30px rgba(0, 255, 0, 0.1);
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    border-left: 5px solid #0f0;
+    border-right: 5px solid #0f0;
+}
+
+    /* √литч-эффект дл€ заголовка */
+    .progress-header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #0f0, #f00, #0ff, #0f0, transparent );
+        animation: glitchLine 3s linear infinite;
+    }
+
+@keyframes glitchLine {
+    0% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.3;
+    }
+}
+
+.progress-header h1 {
+    margin: 0 0 25px 0;
+    text-align: center;
+    font-size: 2.2em;
+    text-shadow: 0 0 5px #0f0, 0 0 10px #0f0, 0 0 15px #0f0;
+    color: #0f0;
+    font-family: 'Roboto Mono', monospace;
+    letter-spacing: 2px;
+    position: relative;
+    padding: 10px;
+    background: rgba(0, 20, 0, 0.7);
+    border: 1px solid rgba(0, 255, 0, 0.2);
+}
+
+.stats {
+    display: flex;
+    justify-content: space-around;
+    margin: 30px 0;
+    gap: 15px;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 20px;
+    background: rgba(0, 20, 0, 0.6);
+    border-radius: 0;
+    backdrop-filter: blur(3px);
+    min-width: 120px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+    .stat-item:hover {
+        background: rgba(0, 40, 0, 0.8);
+        border-color: #0ff;
+        box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+        transform: translateY(-2px);
+    }
+
+    /* Ёффект битых пикселей в статистике */
+    .stat-item::after {
+        content: '';
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        width: 3px;
+        height: 3px;
+        background: #f00;
+        animation: pixelFlicker 2s infinite;
+    }
+
+.stat-number {
+    display: block;
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-bottom: 8px;
+    text-shadow: 0 0 5px currentColor, 0 0 10px currentColor;
+    color: #0ff;
+    font-family: 'Courier New', monospace;
+}
+
+.stat-label {
+    font-size: 0.9em;
+    opacity: 0.9;
+    text-shadow: 0 0 3px #0f0;
+    color: #8f8;
+    letter-spacing: 1px;
+}
+
+.progress-bar-container {
+    background: rgba(0, 20, 0, 0.6);
+    height: 35px;
+    border-radius: 0;
+    overflow: hidden;
+    margin-top: 25px;
+    backdrop-filter: blur(3px);
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.progress-bar {
+    background: linear-gradient(90deg, #0f0, #0ff, #0f0 );
+    height: 100%;
+    border-radius: 0;
+    transition: width 0.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+    /* Ёффект сканировани€ в прогрессе */
+    .progress-bar::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient( 90deg, transparent, rgba(255, 255, 255, 0.4), transparent );
+        animation: scanProgress 2s linear infinite;
+    }
+
+@keyframes scanProgress {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.progress-text {
+    color: #000;
+    font-weight: bold;
+    font-size: 1em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 1px;
 }
