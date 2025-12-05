@@ -19,7 +19,7 @@ const FilterControls = ({ activeFilter, onFilterChange }) => {
                         className={`filter-btn ${activeFilter === filter.id ? 'active' : ''}`}
                         onClick={() => onFilterChange(filter.id)}
                     >
-                        <span className="filter-icon">{filter.icon}</span>
+                        <span className="filter-icon blink-slow">{filter.icon}</span>
                         <span className="filter-label">{filter.label}</span>
                     </button>
                 ))}

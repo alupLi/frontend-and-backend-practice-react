@@ -1,33 +1,68 @@
-/*.technology-card {
-    background: white;
-    border-radius: 10px;
+.technology-card {
+    background: rgba(5, 15, 5, 0.9);
+    border-radius: 0;
     padding: 25px;
     margin: 0;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    transition: all 0.3s ease;
-    cursor: pointer;
-    border-left: 5px solid;
+    border: 1px solid #003300;
+    border-left: 5px solid #333;
     height: 100%;
     display: flex;
     flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.15s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-    .technology-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-    }
+    /* --- Статусы (Цвета) --- */
 
+    /* Completed: Зеленый неон */
     .technology-card.completed {
-        border-left-color: #4CAF50;
+        border-left-color: #00ff00;
+        box-shadow: inset 2px 0 0 rgba(0, 255, 0, 0.2);
     }
 
+        .technology-card.completed .status-badge,
+        .technology-card.completed h3 {
+            color: #00ff00;
+            text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+        }
+
+    /* In Progress: Желто-оранжевый неон */
     .technology-card.in-progress {
-        border-left-color: #FF9800;
+        border-left-color: #ffaa00;
+        box-shadow: inset 2px 0 0 rgba(255, 170, 0, 0.2);
     }
 
+        .technology-card.in-progress .status-badge,
+        .technology-card.in-progress h3 {
+            color: #ffaa00;
+            text-shadow: 0 0 5px rgba(255, 170, 0, 0.5);
+        }
+
+    /* Not Started: Тусклый серый */
     .technology-card.not-started {
-        border-left-color: #9E9E9E;
+        border-left-color: #555555;
     }
+
+        .technology-card.not-started .status-badge,
+        .technology-card.not-started h3 {
+            color: #777777;
+        }
+
+    /* --- Hover Эффекты (Без лагов) --- */
+    .technology-card:hover {
+        /* Сдвиг вверх и влево */
+        transform: translate(-3px, -3px);
+        /* Жесткая "пиксельная" тень цвета статуса */
+        box-shadow: 5px 5px 0px rgba(0, 40, 0, 0.8);
+        background: rgba(10, 25, 10, 0.95);
+        /* Подсветка основной рамки при наведении */
+        border-right-color: #00ff00;
+        border-top-color: #00ff00;
+        border-bottom-color: #00ff00;
+    }
+
+/* --- Внутренняя структура --- */
 
 .card-header {
     display: flex;
@@ -38,26 +73,27 @@
 
     .card-header h3 {
         margin: 0;
-        color: #333;
         font-size: 1.3em;
         flex: 1;
+        font-family: 'Courier New', monospace;
+        text-transform: uppercase;
+        letter-spacing: 1px;
     }
 
 .status-badge {
     font-size: 1.5em;
     margin-left: 10px;
-    transition: transform 0.3s ease;
-}
-
-.technology-card:hover .status-badge {
-    transform: scale(1.1);
+    /* Мерцание для иконки статуса */
+    animation: subtle-flicker 4s infinite;
 }
 
 .description {
-    color: #666;
+    color: #00bb00; /* Тусклый зеленый для текста */
     line-height: 1.5;
     margin: 15px 0;
     flex: 1;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.95em;
 }
 
 .card-footer {
@@ -66,294 +102,84 @@
     align-items: center;
     margin-top: auto;
     padding-top: 15px;
-    border-top: 1px solid #eee;
+    border-top: 1px dashed #004400; /* Пунктирная линия */
 }
 
 .status-text {
     font-weight: bold;
-    font-size: 0.9em;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    font-family: monospace;
+    letter-spacing: 1px;
+}
+
+.completed .status-text {
+    color: #00ff00;
+}
+
+.in-progress .status-text {
+    color: #ffaa00;
+}
+
+.not-started .status-text {
     color: #666;
 }
 
+/* Подсказка при наведении */
 .click-hint {
     font-size: 0.8em;
-    color: #667eea;
+    color: #00ff00;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.2s ease;
+    font-family: monospace;
 }
 
 .technology-card:hover .click-hint {
     opacity: 1;
-}
-*/
-
-/* TechnologyCard.css */
-.technology-card {
-    background: rgba(0, 20, 0, 0.85);
-    backdrop-filter: blur(3px);
-    border-radius: 0;
-    padding: 25px;
-    margin: 0;
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.2), inset 0 0 20px rgba(0, 255, 0, 0.1);
-    transition: all 0.3s ease;
-    cursor: pointer;
-    border: 1px solid rgba(0, 255, 0, 0.3);
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    overflow: hidden;
-    font-family: 'Roboto Mono', monospace;
+    animation: blink-fast 0.5s infinite;
 }
 
-    /* Эффект CRT текстуры на карточке */
-    .technology-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: repeating-linear-gradient( 0deg, rgba(0, 255, 0, 0.03) 0px, rgba(0, 255, 0, 0.03) 1px, transparent 1px, transparent 2px );
-        pointer-events: none;
-        z-index: 0;
+/* --- Анимации для карточки --- */
+
+/* Легкое мерцание иконки */
+@keyframes subtle-flicker {
+    0%, 100% {
+        opacity: 1;
     }
 
-    /* Эффект глитча при наведении */
-    .technology-card:hover {
-        animation: glitch 0.3s;
-        background: rgba(0, 30, 0, 0.9);
-        border-color: rgba(0, 255, 0, 0.6);
-        box-shadow: 0 0 30px rgba(0, 255, 0, 0.4), inset 0 0 30px rgba(0, 255, 0, 0.2);
+    50% {
+        opacity: 0.7;
     }
 
-@keyframes glitch {
-    0% {
-        transform: translate(0);
+    52% {
+        opacity: 0.9;
     }
 
-    20% {
-        transform: translate(-2px, 2px);
-    }
-
-    40% {
-        transform: translate(-2px, -2px);
-    }
-
-    60% {
-        transform: translate(2px, 2px);
-    }
-
-    80% {
-        transform: translate(2px, -2px);
-    }
-
-    100% {
-        transform: translate(0);
+    54% {
+        opacity: 0.7;
     }
 }
 
-/* Полоса статуса (как в сломанной матрице) */
-.technology-card::after {
+/* Быстрое мигание для подсказки */
+@keyframes blink-fast {
+    0%, 49% {
+        opacity: 1;
+    }
+
+    50%, 100% {
+        opacity: 0;
+    }
+}
+
+/* Скан-линии только на фон карточки для текстуры */
+.technology-card::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    height: 3px;
-    z-index: 1;
-    background: linear-gradient(90deg, transparent, currentColor, transparent );
-    animation: statusGlitch 3s infinite;
-}
-
-.technology-card.completed::after {
-    color: #4CAF50;
-}
-
-.technology-card.in-progress::after {
-    color: #FF9800;
-    animation: statusGlitch 1s infinite;
-}
-
-.technology-card.not-started::after {
-    color: #9E9E9E;
-}
-
-@keyframes statusGlitch {
-    0%, 100% {
-        opacity: 0.7;
-    }
-
-    50% {
-        opacity: 1;
-    }
-}
-
-.card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 20px;
-    position: relative;
-    z-index: 1;
-}
-
-    .card-header h3 {
-        margin: 0;
-        color: #00ff00;
-        font-size: 1.4em;
-        line-height: 1.3;
-        text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00;
-        background: rgba(0, 20, 0, 0.9);
-        padding: 5px 10px;
-        margin: -5px -10px;
-        border: 1px solid rgba(0, 255, 0, 0.2);
-        flex: 1;
-    }
-
-.status-badge {
-    font-size: 2em;
-    margin-left: 15px;
-    transition: all 0.3s ease;
-    filter: drop-shadow(0 0 5px currentColor);
-    min-width: 40px;
-    text-align: center;
-    background: rgba(0, 20, 0, 0.9);
-    padding: 5px;
-    border: 1px solid rgba(0, 255, 0, 0.2);
-}
-
-.technology-card:hover .status-badge {
-    transform: scale(1.2);
-    animation: badgeGlitch 0.5s;
-}
-
-@keyframes badgeGlitch {
-    0%, 100% {
-        transform: scale(1.2);
-    }
-
-    33% {
-        transform: scale(1.2) rotate(5deg);
-    }
-
-    66% {
-        transform: scale(1.2) rotate(-5deg);
-    }
-}
-
-.description {
-    color: rgba(200, 255, 200, 0.9);
-    line-height: 1.6;
-    margin: 20px 0;
-    flex: 1;
-    position: relative;
-    z-index: 1;
-    font-size: 0.95em;
-    background: rgba(0, 20, 0, 0.7);
-    padding: 15px;
-    border: 1px solid rgba(0, 255, 0, 0.1);
-    box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.1);
-    text-shadow: 0 0 2px rgba(0, 255, 0, 0.5);
-}
-
-.card-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: auto;
-    padding-top: 20px;
-    border-top: 1px solid rgba(0, 255, 0, 0.2);
-    position: relative;
-    z-index: 1;
-}
-
-.status-text {
-    font-weight: bold;
-    font-size: 0.95em;
-    color: rgba(200, 255, 200, 0.9);
-    text-shadow: 0 0 3px currentColor;
-    padding: 5px 10px;
-    background: rgba(0, 20, 0, 0.8);
-    border: 1px solid rgba(0, 255, 0, 0.2);
-}
-
-.completed .status-text {
-    color: #4CAF50;
-    text-shadow: 0 0 5px #4CAF50;
-}
-
-.in-progress .status-text {
-    color: #FF9800;
-    text-shadow: 0 0 5px #FF9800;
-    animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-    0%, 100% {
-        opacity: 0.8;
-    }
-
-    50% {
-        opacity: 1;
-    }
-}
-
-.click-hint {
-    font-size: 0.8em;
-    color: rgba(0, 255, 0, 0.7);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    text-shadow: 0 0 3px rgba(0, 255, 0, 0.5);
-    background: rgba(0, 20, 0, 0.8);
-    padding: 3px 8px;
-    border: 1px solid rgba(0, 255, 0, 0.2);
-}
-
-.technology-card:hover .click-hint {
-    opacity: 1;
-}
-
-/* Эффект мерцающих пикселей в углах */
-.technology-card .pixel-corner {
-    position: absolute;
-    width: 3px;
-    height: 3px;
-    background: #00ff00;
-    opacity: 0;
-    animation: pixelFlicker 2s infinite;
-}
-
-    .technology-card .pixel-corner:nth-child(1) {
-        top: 5px;
-        left: 5px;
-        animation-delay: 0s;
-    }
-
-    .technology-card .pixel-corner:nth-child(2) {
-        top: 5px;
-        right: 5px;
-        animation-delay: 0.5s;
-    }
-
-    .technology-card .pixel-corner:nth-child(3) {
-        bottom: 5px;
-        left: 5px;
-        animation-delay: 1s;
-    }
-
-    .technology-card .pixel-corner:nth-child(4) {
-        bottom: 5px;
-        right: 5px;
-        animation-delay: 1.5s;
-    }
-
-@keyframes pixelFlicker {
-    0%, 100% {
-        opacity: 0;
-    }
-
-    50% {
-        opacity: 1;
-    }
+    bottom: 0;
+    background: repeating-linear-gradient( 0deg, rgba(0, 255, 0, 0.03) 0px, rgba(0, 255, 0, 0.03) 1px, transparent 1px, transparent 3px );
+    pointer-events: none;
+    z-index: -1;
 }

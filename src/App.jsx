@@ -5,7 +5,6 @@ import ProgressHeader from './components/ProgressHeader';
 import QuickActions from './components/QuickActions';
 import FilterControls from './components/FilterControls';
 import GlitchEffects from './components/GlitchEffects';
-import VHSEffects from './components/VHSEffects';
 
 const App = () => {
     const [technologies, setTechnologies] = useState([
@@ -88,35 +87,35 @@ const App = () => {
     });
 
     return (
-        <div className="app">
-            <VHSEffects />
+        <div>
             <GlitchEffects />
+            <div className="app">
+                <ProgressHeader technologies={technologies} />
 
-            <ProgressHeader technologies={technologies} />
-
-            <div className="controls-container">
-                <QuickActions
-                    onMarkAllCompleted={handleMarkAllCompleted}
-                    onResetAll={handleResetAll}
-                    onRandomNext={handleRandomNext}
-                />
-                <FilterControls
-                    activeFilter={activeFilter}
-                    onFilterChange={setActiveFilter}
-                />
-            </div>
-
-            <div className="technologies-grid">
-                {filteredTechnologies.map(tech => (
-                    <TechnologyCard
-                        key={tech.id}
-                        id={tech.id}
-                        title={tech.title}
-                        description={tech.description}
-                        status={tech.status}
-                        onStatusChange={handleStatusChange}
+                <div className="controls-container">
+                    <QuickActions
+                        onMarkAllCompleted={handleMarkAllCompleted}
+                        onResetAll={handleResetAll}
+                        onRandomNext={handleRandomNext}
                     />
-                ))}
+                    <FilterControls
+                        activeFilter={activeFilter}
+                        onFilterChange={setActiveFilter}
+                    />
+                </div>
+
+                <div className="technologies-grid">
+                    {filteredTechnologies.map(tech => (
+                        <TechnologyCard
+                            key={tech.id}
+                            id={tech.id}
+                            title={tech.title}
+                            description={tech.description}
+                            status={tech.status}
+                            onStatusChange={handleStatusChange}
+                        />
+                    ))}
+                </div>
             </div>
         </div>
     );

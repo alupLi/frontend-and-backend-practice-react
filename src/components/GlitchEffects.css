@@ -1,99 +1,95 @@
-/* GlitchEffects.css - ОПТИМИЗИРОВАННАЯ ВЕРСИЯ */
-.glitch-container {
+/* Контейнер поверх всего. pointer-events: none позволяет кликать сквозь него */
+.crt-overlay {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
     pointer-events: none;
-    z-index: -1;
     overflow: hidden;
 }
 
-/* Упрощенный шум - не анимированный, только текстура */
-.noise {
+/* 1. Эффект скан-линий - статический градиент */
+.scanlines {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
-    opacity: 0.3;
-    mix-blend-mode: overlay;
+    background: linear-gradient( to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2) );
+    background-size: 100% 4px; /* Размер полосок */
+    pointer-events: none;
 }
 
-/* Упрощенная сканирующая линия */
+/* 2. Шум (Зернистость) */
+.noise-layer {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
+    background-size: 150px 150px; /* Маленький размер паттерна */
+    opacity: 0.07;
+    animation: noise-animation 0.5s infinite steps(5); /* steps() делает анимацию резкой */
+}
 
-
-@keyframes scan {
+@keyframes noise-animation {
     0% {
-        transform: translateY(-100px);
+        transform: translate(0, 0);
+    }
+
+    20% {
+        transform: translate(-5%, -5%);
+    }
+
+    40% {
+        transform: translate(-10%, 5%);
+    }
+
+    60% {
+        transform: translate(5%, -10%);
+    }
+
+    80% {
+        transform: translate(-5%, 10%);
     }
 
     100% {
-        transform: translateY(100vh);
+        transform: translate(0, 0);
     }
 }
 
-/* Статические глитч-полосы (без анимации) */
-.glitch-bars {
-    position: fixed;
-    top: 0;
-    left: 0;
+/* 3. Большая бегущая полоса (V-Sync failure) */
+.scan-bar {
     width: 100%;
-    height: 100%;
-    background: repeating-linear-gradient( 0deg, rgba(0, 255, 0, 0.03) 0px, rgba(0, 255, 0, 0.03) 1px, transparent 1px, transparent 3px ), repeating-linear-gradient( 90deg, rgba(255, 0, 0, 0.02) 0px, rgba(255, 0, 0, 0.02) 1px, transparent 1px, transparent 2px );
+    height: 10px;
+    background: rgba(0, 255, 0, 0.1);
+    position: absolute;
+    z-index: 10;
+    animation: scan-move 8s linear infinite;
     opacity: 0.3;
-    pointer-events: none;
-    z-index: -1;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.4);
 }
 
-/* Эффект мерцания - упрощенный */
-.screen-flicker {
-    position: fixed;
+@keyframes scan-move {
+    0% {
+        transform: translateY(-10vh);
+    }
+
+    100% {
+        transform: translateY(110vh);
+    }
+}
+
+/* 4. Виньетка (затемнение по краям экрана) */
+.vignette {
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.02);
-    animation: flicker 8s infinite;
-    pointer-events: none;
-    z-index: 998;
+    background: radial-gradient(circle, transparent 60%, black 100%);
+    opacity: 0.6;
 }
-
-@keyframes flicker {
-    0%, 100% {
-        opacity: 0;
-    }
-
-    50% {
-        opacity: 0.1;
-    }
-
-    75% {
-        opacity: 0.05;
-    }
-}
-
-/* Эффект битых пикселей - без анимации */
-.dead-pixels {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 997;
-}
-
-    .dead-pixels::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: radial-gradient(circle at 10% 20%, #f00 1px, transparent 1px), radial-gradient(circle at 90% 30%, #0f0 1px, transparent 1px), radial-gradient(circle at 50% 70%, #00f 1px, transparent 1px);
-        background-size: 500px 500px;
-        opacity: 0.1;
-    }
