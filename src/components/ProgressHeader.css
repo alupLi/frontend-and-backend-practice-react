@@ -104,3 +104,7 @@
 .glitching {
     color: #ff0000;
 }
+
+.progress-bar-glitching {
+    background: #ff0000;
+}

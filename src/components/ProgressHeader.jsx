@@ -56,8 +56,8 @@ const ProgressHeader = ({ technologies }) => {
 
             <div className="progress-bar-container">
                 <div
-                    className="progress-bar"
-                    style={{ width: `${percentage}%` }}
+                    className={`progress-bar ${isGlitching ? 'progress-bar-glitching' : ''}`}
+                    style={{ width: `${isGlitching ? 0 : percentage}%` }}
                 >
                     <span className="progress-text">{percentage}%</span>
                 </div>
