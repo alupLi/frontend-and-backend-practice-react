@@ -1,0 +1,52 @@
+.notes-section {
+    margin-top: 15px;
+    border-top: 1px dashed #003300;
+    padding-top: 15px;
+}
+
+.notes-title {
+    color: #00ff00;
+    font-size: 0.9em;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Courier New', monospace;
+}
+
+.notes-hint {
+    font-size: 0.7em;
+    color: #008800;
+    opacity: 0.8;
+}
+
+.notes-textarea {
+    width: 100%;
+    background: rgba(0, 20, 0, 0.7);
+    border: 1px solid #005500;
+    color: #00ff00;
+    font-family: 'Roboto Mono', monospace;
+    padding: 10px;
+    resize: vertical;
+    transition: all 0.2s;
+}
+
+    .notes-textarea:focus {
+        outline: none;
+        border-color: #00ff00;
+        box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+        background: rgba(0, 30, 0, 0.8);
+    }
+
+.notes-counter {
+    text-align: right;
+    font-size: 0.7em;
+    color: #008800;
+    margin-top: 5px;
+    font-family: monospace;
+}
+
+    .notes-counter .warning {
+        color: #ff5500;
+        animation: blink-fast 1s infinite;
+    }

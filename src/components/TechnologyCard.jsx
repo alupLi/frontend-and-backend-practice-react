@@ -1,7 +1,8 @@
 ﻿import React from 'react';
 import './TechnologyCard.css';
+import TechnologyNotes from './TechnologyNotes';
 
-const TechnologyCard = ({ id, title, description, status, onStatusChange }) => {
+const TechnologyCard = ({ id, title, description, status, notes, onStatusChange, onNotesChange }) => {
     const handleClick = () => {
         const nextStatus = {
             'not-started': 'in-progress',
@@ -48,6 +49,11 @@ const TechnologyCard = ({ id, title, description, status, onStatusChange }) => {
                 </span>
             </div>
             <p className="description">{description}</p>
+            <TechnologyNotes
+                notes={notes}
+                onNotesChange={onNotesChange}
+                techId={id}
+            />
             <div className="card-footer">
                 <span className="status-text">
                     {getStatusText(status)}

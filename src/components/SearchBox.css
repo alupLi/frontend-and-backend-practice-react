@@ -1,0 +1,84 @@
+.search-box-container {
+    margin: 20px 0;
+}
+
+.search-box {
+    background: rgba(0, 15, 0, 0.9);
+    border: 1px solid #005500;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+    transition: all 0.3s;
+}
+
+    .search-box:focus-within {
+        border-color: #00ff00;
+        box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+    }
+
+.search-icon {
+    font-size: 1.2em;
+    color: #00ff00;
+    animation: blink-slow 3s infinite;
+}
+
+.search-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
+    font-size: 1em;
+    padding: 8px;
+    outline: none;
+}
+
+    .search-input::placeholder {
+        color: #008800;
+        opacity: 0.7;
+    }
+
+.search-stats {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.result-count {
+    color: #00ff00;
+    font-size: 0.9em;
+}
+
+    .result-count strong {
+        color: #00ff00;
+        text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+    }
+
+.clear-search {
+    background: rgba(255, 0, 0, 0.2);
+    border: 1px solid #ff3300;
+    color: #ff3300;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    font-family: monospace;
+    font-size: 0.8em;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .clear-search:hover {
+        background: #ff3300;
+        color: #000;
+        transform: scale(1.1);
+    }
+
+/* Ёффект сканировани€ при вводе */
+.search-input:focus {
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+}
