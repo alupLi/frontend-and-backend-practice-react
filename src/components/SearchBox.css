@@ -76,6 +76,7 @@
         background: #ff3300;
         color: #000;
         transform: scale(1.1);
+        transform: rotate(90deg);
     }
 
 /* Ёффект сканировани€ при вводе */

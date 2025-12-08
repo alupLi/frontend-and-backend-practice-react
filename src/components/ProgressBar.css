@@ -1,0 +1,103 @@
+/* src/components/ProgressBar/ProgressBar.css */
+/*.progress-bar-container {
+    margin: 15px 0;
+}
+
+.progress-bar-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-family: 'Courier New', monospace;
+}
+
+.progress-label {
+    color: #00ff00;
+    font-size: 0.9em;
+    text-transform: uppercase;
+}
+
+.progress-percentage {
+    color: #00ff00;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+}
+
+.progress-bar-outer {
+    background: rgba(0, 20, 0, 0.8);
+    border: 1px solid #005500;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-bar-inner {
+    height: 100%;
+    position: relative;
+    transition: width 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+    .progress-bar-inner.animated {
+        background-image: linear-gradient( 45deg, rgba(0,0,0,0.1) 25%, transparent 25%, transparent 50%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.1) 75%, transparent 75%, transparent );
+        background-size: 20px 20px;
+        animation: progress-stripes 1s linear infinite;
+    }
+
+    .progress-bar-inner.glitching {
+        animation: progress-glitch 0.3s steps(2) infinite;
+    }
+
+@keyframes progress-stripes {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 20px 0;
+    }
+}
+
+@keyframes progress-glitch {
+    0%, 100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(2px);
+    }
+}*/
+
+.progress-bar-container {
+    background: #002200;
+/*    height: 25px;*/
+    border: 1px solid #005500;
+    padding: 2px;
+    margin-top: 20px;
+    position: relative;
+}
+
+.progress-bar {
+    background: #00ff00;
+    height: 100%;
+    /* Эффект полосатой загрузки */
+    background-image: linear-gradient( 45deg, rgba(0,0,0,0.1) 25%, transparent 25%, transparent 50%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.1) 75%, transparent 75%, transparent );
+    background-size: 20px 20px;
+    transition: width 0.3s steps(10); /* Ступенчатая анимация */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.progress-text {
+    color: #000;
+    font-weight: bold;
+    font-size: 0.8em;
+    font-family: monospace;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    mix-blend-mode: difference; /* Инверсия цвета текста */
+    z-index: 2;
+}
+
+.progress-bar-glitching {
+    background: #ff0000;
+}

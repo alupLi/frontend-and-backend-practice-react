@@ -1,5 +1,6 @@
 ﻿import React, { useState, useEffect } from 'react';
 import './ProgressHeader.css';
+import ProgressBar from './ProgressBar';
 
 const ProgressHeader = ({ technologies }) => {
     const total = technologies.length;
@@ -54,14 +55,11 @@ const ProgressHeader = ({ technologies }) => {
                 </div>
             </div>
 
-            <div className="progress-bar-container">
-                <div
-                    className={`progress-bar ${isGlitching ? 'progress-bar-glitching' : ''}`}
-                    style={{ width: `${isGlitching ? 0 : percentage}%` }}
-                >
-                    <span className="progress-text">{percentage}%</span>
-                </div>
-            </div>
+            <ProgressBar
+                percentage={percentage}
+                isGlitching={isGlitching}
+            />
+
         </div>
     );
 };
