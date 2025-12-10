@@ -45,3 +45,122 @@
         padding: 10px;
     }
 }
+
+/* --- Detail Page (Стиль System Log) --- */
+.detail-container {
+    background: rgba(0, 10, 0, 0.9);
+    border: 1px solid #005500;
+    padding: 30px;
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    box-shadow: 0 0 20px rgba(0, 50, 0, 0.3);
+}
+
+    .detail-container::before {
+        /* Декоративная линия слева как в QuickActions */
+        content: '';
+        position: absolute;
+        left: 5px;
+        top: 5px;
+        bottom: 5px;
+        width: 3px;
+        background: repeating-linear-gradient(to bottom, #00ff00 0, #005500 5px, transparent 5px, transparent 10px);
+    }
+
+.detail-header h1 {
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
+    font-size: 2em;
+    border-bottom: 1px dashed #005500;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.detail-section {
+    margin-bottom: 30px;
+}
+
+    .detail-section h3 {
+        color: #00aa00;
+        font-family: 'Roboto Mono', monospace;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+    }
+
+.detail-text {
+    color: #ccffcc;
+    font-family: 'Segoe UI', monospace;
+    line-height: 1.6;
+    font-size: 1.1em;
+}
+
+/* Кнопки статусов для детальной страницы */
+.status-buttons-large {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.status-btn {
+    padding: 10px 20px;
+    background: transparent;
+    border: 1px solid #004400;
+    color: #004400;
+    cursor: pointer;
+    font-family: 'Roboto Mono', monospace;
+    text-transform: uppercase;
+    transition: all 0.2s;
+}
+
+    .status-btn.active-completed {
+        border-color: #00ff00;
+        color: #000;
+        background: #00ff00;
+        box-shadow: 0 0 10px #00ff00;
+    }
+
+    .status-btn.active-progress {
+        border-color: #ffaa00;
+        color: #000;
+        background: #ffaa00;
+        box-shadow: 0 0 10px #ffaa00;
+    }
+
+    .status-btn:hover {
+/*        transform: translateY(-2px);*/
+        border-color: #fff;
+        color: #fff;
+    }
+
+.back-btn {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: #00ff00;
+    text-decoration: none;
+    font-family: monospace;
+    border: 1px solid #00ff00;
+    padding: 5px 15px;
+}
+
+    .back-btn:hover {
+        background: #00ff00;
+        color: black;
+    }
+
+.TD-back-btn {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: #00ff00;
+    text-decoration: none;
+    font-family: monospace;
+    border: none;
+    padding: 5px 15px;
+    background: transparent;
+    cursor: pointer;
+    font-size: 1.2em;
+}
+
+.TD-content {
+    margin: 30px 0;
+}

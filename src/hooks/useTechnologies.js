@@ -1,45 +1,45 @@
-//import useLocalStorage from './useLocalStorage';
+ï»¿//import useLocalStorage from './useLocalStorage';
 
 //const initialTechnologies = [
 //    {
 //        id: 1,
 //        title: 'React Components',
-//        description: 'Èçó÷åíèå ôóíêöèîíàëüíûõ è êëàññîâûõ êîìïîíåíòîâ, èõ æèçíåííîãî öèêëà',
+//        description: 'Ð˜Ð·ÑƒÑ‡ÐµÐ½Ð¸Ðµ Ñ„ÑƒÐ½ÐºÑ†Ð¸Ð¾Ð½Ð°Ð»ÑŒÐ½Ñ‹Ñ… Ð¸ ÐºÐ»Ð°ÑÑÐ¾Ð²Ñ‹Ñ… ÐºÐ¾Ð¼Ð¿Ð¾Ð½ÐµÐ½Ñ‚Ð¾Ð², Ð¸Ñ… Ð¶Ð¸Ð·Ð½ÐµÐ½Ð½Ð¾Ð³Ð¾ Ñ†Ð¸ÐºÐ»Ð°',
 //        status: 'completed',
 //        notes: ''
 //    },
 //    {
 //        id: 2,
 //        title: 'JSX Syntax',
-//        description: 'Îñâîåíèå ñèíòàêñà JSX, óñëîâíîãî ðåíäåðèíãà è ñïèñêîâ',
+//        description: 'ÐžÑÐ²Ð¾ÐµÐ½Ð¸Ðµ ÑÐ¸Ð½Ñ‚Ð°ÐºÑÐ° JSX, ÑƒÑÐ»Ð¾Ð²Ð½Ð¾Ð³Ð¾ Ñ€ÐµÐ½Ð´ÐµÑ€Ð¸Ð½Ð³Ð° Ð¸ ÑÐ¿Ð¸ÑÐºÐ¾Ð²',
 //        status: 'completed',
 //        notes: ''
 //    },
 //    {
 //        id: 3,
 //        title: 'State Management',
-//        description: 'Ðàáîòà ñ ñîñòîÿíèåì êîìïîíåíòîâ, èñïîëüçîâàíèå õóêîâ useState è useEffect',
+//        description: 'Ð Ð°Ð±Ð¾Ñ‚Ð° Ñ ÑÐ¾ÑÑ‚Ð¾ÑÐ½Ð¸ÐµÐ¼ ÐºÐ¾Ð¼Ð¿Ð¾Ð½ÐµÐ½Ñ‚Ð¾Ð², Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ð½Ð¸Ðµ Ñ…ÑƒÐºÐ¾Ð² useState Ð¸ useEffect',
 //        status: 'in-progress',
 //        notes: ''
 //    },
 //    {
 //        id: 4,
 //        title: 'Props & Context',
-//        description: 'Ïåðåäà÷à äàííûõ ìåæäó êîìïîíåíòàìè, èñïîëüçîâàíèå Context API',
+//        description: 'ÐŸÐµÑ€ÐµÐ´Ð°Ñ‡Ð° Ð´Ð°Ð½Ð½Ñ‹Ñ… Ð¼ÐµÐ¶Ð´Ñƒ ÐºÐ¾Ð¼Ð¿Ð¾Ð½ÐµÐ½Ñ‚Ð°Ð¼Ð¸, Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ð½Ð¸Ðµ Context API',
 //        status: 'not-started',
 //        notes: ''
 //    },
 //    {
 //        id: 5,
 //        title: 'React Router',
-//        description: 'Íàñòðîéêà ìàðøðóòèçàöèè â React-ïðèëîæåíèÿõ',
+//        description: 'ÐÐ°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ° Ð¼Ð°Ñ€ÑˆÑ€ÑƒÑ‚Ð¸Ð·Ð°Ñ†Ð¸Ð¸ Ð² React-Ð¿Ñ€Ð¸Ð»Ð¾Ð¶ÐµÐ½Ð¸ÑÑ…',
 //        status: 'not-started',
 //        notes: ''
 //    },
 //    {
 //        id: 6,
 //        title: 'Custom Hooks',
-//        description: 'Ñîçäàíèå ñîáñòâåííûõ õóêîâ äëÿ ïåðåèñïîëüçîâàíèÿ ëîãèêè',
+//        description: 'Ð¡Ð¾Ð·Ð´Ð°Ð½Ð¸Ðµ ÑÐ¾Ð±ÑÑ‚Ð²ÐµÐ½Ð½Ñ‹Ñ… Ñ…ÑƒÐºÐ¾Ð² Ð´Ð»Ñ Ð¿ÐµÑ€ÐµÐ¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ð½Ð¸Ñ Ð»Ð¾Ð³Ð¸ÐºÐ¸',
 //        status: 'not-started',
 //        notes: ''
 //    }
@@ -90,49 +90,49 @@ const initialTechnologies = [
     {
         id: 1,
         title: 'React Components',
-        description: 'Èçó÷åíèå ôóíêöèîíàëüíûõ è êëàññîâûõ êîìïîíåíòîâ, èõ æèçíåííîãî öèêëà',
+        description: 'Ð˜Ð·ÑƒÑ‡ÐµÐ½Ð¸Ðµ Ñ„ÑƒÐ½ÐºÑ†Ð¸Ð¾Ð½Ð°Ð»ÑŒÐ½Ñ‹Ñ… Ð¸ ÐºÐ»Ð°ÑÑÐ¾Ð²Ñ‹Ñ… ÐºÐ¾Ð¼Ð¿Ð¾Ð½ÐµÐ½Ñ‚Ð¾Ð², Ð¸Ñ… Ð¶Ð¸Ð·Ð½ÐµÐ½Ð½Ð¾Ð³Ð¾ Ñ†Ð¸ÐºÐ»Ð°',
         status: 'completed',
         notes: ''
     },
     {
         id: 2,
         title: 'JSX Syntax',
-        description: 'Îñâîåíèå ñèíòàêñèñà JSX, óñëîâíîãî ðåíäåðèíãà è ñïèñêîâ',
+        description: 'ÐžÑÐ²Ð¾ÐµÐ½Ð¸Ðµ ÑÐ¸Ð½Ñ‚Ð°ÐºÑÐ¸ÑÐ° JSX, ÑƒÑÐ»Ð¾Ð²Ð½Ð¾Ð³Ð¾ Ñ€ÐµÐ½Ð´ÐµÑ€Ð¸Ð½Ð³Ð° Ð¸ ÑÐ¿Ð¸ÑÐºÐ¾Ð²',
         status: 'completed',
         notes: ''
     },
     {
         id: 3,
         title: 'State Management',
-        description: 'Ðàáîòà ñ ñîñòîÿíèåì êîìïîíåíòîâ, èñïîëüçîâàíèå õóêîâ useState è useEffect',
+        description: 'Ð Ð°Ð±Ð¾Ñ‚Ð° Ñ ÑÐ¾ÑÑ‚Ð¾ÑÐ½Ð¸ÐµÐ¼ ÐºÐ¾Ð¼Ð¿Ð¾Ð½ÐµÐ½Ñ‚Ð¾Ð², Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ð½Ð¸Ðµ Ñ…ÑƒÐºÐ¾Ð² useState Ð¸ useEffect',
         status: 'in-progress',
         notes: ''
     },
     {
         id: 4,
         title: 'Props & Context',
-        description: 'Ïåðåäà÷à äàííûõ ìåæäó êîìïîíåíòàìè, èñïîëüçîâàíèå Context API',
+        description: 'ÐŸÐµÑ€ÐµÐ´Ð°Ñ‡Ð° Ð´Ð°Ð½Ð½Ñ‹Ñ… Ð¼ÐµÐ¶Ð´Ñƒ ÐºÐ¾Ð¼Ð¿Ð¾Ð½ÐµÐ½Ñ‚Ð°Ð¼Ð¸, Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ð½Ð¸Ðµ Context API',
         status: 'not-started',
         notes: ''
     },
     {
         id: 5,
         title: 'React Router',
-        description: 'Íàñòðîéêà ìàðøðóòèçàöèè â React-ïðèëîæåíèÿõ',
+        description: 'ÐÐ°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ° Ð¼Ð°Ñ€ÑˆÑ€ÑƒÑ‚Ð¸Ð·Ð°Ñ†Ð¸Ð¸ Ð² React-Ð¿Ñ€Ð¸Ð»Ð¾Ð¶ÐµÐ½Ð¸ÑÑ…',
         status: 'not-started',
         notes: ''
     },
     {
         id: 6,
         title: 'Custom Hooks',
-        description: 'Ñîçäàíèå ñîáñòâåííûõ õóêîâ äëÿ ïåðåèñïîëüçîâàíèÿ ëîãèêè',
+        description: 'Ð¡Ð¾Ð·Ð´Ð°Ð½Ð¸Ðµ ÑÐ¾Ð±ÑÑ‚Ð²ÐµÐ½Ð½Ñ‹Ñ… Ñ…ÑƒÐºÐ¾Ð² Ð´Ð»Ñ Ð¿ÐµÑ€ÐµÐ¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ð½Ð¸Ñ Ð»Ð¾Ð³Ð¸ÐºÐ¸',
         status: 'not-started',
         notes: ''
     }
 ];
 
 const useTechnologies = () => {
-    // Çàãðóæàåì èç localStorage ïðè èíèöèàëèçàöèè
+    // Ð—Ð°Ð³Ñ€ÑƒÐ¶Ð°ÐµÐ¼ Ð¸Ð· localStorage Ð¿Ñ€Ð¸ Ð¸Ð½Ð¸Ñ†Ð¸Ð°Ð»Ð¸Ð·Ð°Ñ†Ð¸Ð¸
     const [technologies, setTechnologies] = useState(() => {
         try {
             const saved = localStorage.getItem('techTrackerData');
@@ -140,17 +140,17 @@ const useTechnologies = () => {
                 return JSON.parse(saved);
             }
         } catch (error) {
-            console.error('Îøèáêà ïðè çàãðóçêå èç localStorage:', error);
+            console.error('ÐžÑˆÐ¸Ð±ÐºÐ° Ð¿Ñ€Ð¸ Ð·Ð°Ð³Ñ€ÑƒÐ·ÐºÐµ Ð¸Ð· localStorage:', error);
         }
         return initialTechnologies;
     });
 
-    // Ñîõðàíÿåì â localStorage ïðè èçìåíåíèè
+    // Ð¡Ð¾Ñ…Ñ€Ð°Ð½ÑÐµÐ¼ Ð² localStorage Ð¿Ñ€Ð¸ Ð¸Ð·Ð¼ÐµÐ½ÐµÐ½Ð¸Ð¸
     useEffect(() => {
         try {
             localStorage.setItem('techTrackerData', JSON.stringify(technologies));
         } catch (error) {
-            console.error('Îøèáêà ïðè ñîõðàíåíèè â localStorage:', error);
+            console.error('ÐžÑˆÐ¸Ð±ÐºÐ° Ð¿Ñ€Ð¸ ÑÐ¾Ñ…Ñ€Ð°Ð½ÐµÐ½Ð¸Ð¸ Ð² localStorage:', error);
         }
     }, [technologies]);
 
@@ -180,8 +180,9 @@ const useTechnologies = () => {
         setTechnologies,
         updateStatus,
         updateNotes,
-        progress: calculateProgress()
+        progress: calculateProgress(),
     };
 };
 
 export default useTechnologies;
+export { initialTechnologies };

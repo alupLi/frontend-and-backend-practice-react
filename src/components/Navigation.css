@@ -1,0 +1,77 @@
+/* --- Navigation (Стиль CRT Menu) --- */
+.crt-nav {
+    /*    display: flex;*/
+    display: grid;
+    grid-template-columns: auto 1fr;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: rgba(0, 15, 0, 0.95);
+    border-bottom: 2px solid #005500;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0, 20, 0, 0.5);
+    position: relative;
+    z-index: 100;
+}
+
+.nav-brand h1 {
+    font-family: 'Courier New', monospace;
+    font-size: 1.5em;
+    color: #00ff00;
+    text-transform: uppercase;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+    margin: 0;
+}
+
+.nav-panel {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    background: rgba(0,15,0,0.95);
+    border-bottom: 2px solid #005500;
+    margin-bottom: 20px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-link {
+    color: #008800;
+    text-decoration: none;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+}
+
+    .nav-link:hover, .nav-link.active {
+        color: #00ff00;
+        border: 1px solid #00ff00;
+        background: rgba(0, 255, 0, 0.1);
+        box-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
+    }
+
+.system-root {
+    text-decoration: none;
+    color: #00ff00;
+    font-family: 'Courier New';
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        gap: 1rem;
+    }
+
+    .nav-links {
+        justify-content: flex-start;
+        flex-direction: column;
+    }
+}

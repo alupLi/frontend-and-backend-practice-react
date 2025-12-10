@@ -6,13 +6,14 @@ const ProgressBar = ({
     percentage,
     isGlitching = false,
     height = 25,
+    width = 100,
     showText = false,
     label = ""
 }) => {
     return (
         <div
             className="progress-bar-container"
-            style={{ height: `${height}px` }}
+            style={{ height: `${height}px`, width: `${width}%` }}
         >
             <div
                 className={`progress-bar ${isGlitching ? 'progress-bar-glitching' : ''}`}
