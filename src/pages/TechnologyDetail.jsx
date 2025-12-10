@@ -1,57 +1,50 @@
-﻿//import React, { useEffect, useState } from 'react';
-//import { useParams, useNavigate, Link } from 'react-router-dom';
+﻿
+//import React from 'react';
+//import { useParams, Link, useNavigate } from 'react-router-dom';
 //import useTechnologies from '../hooks/useTechnologies';
+//import '../components/TechnologyCard.css';
 
 //const TechnologyDetail = () => {
-//    const { id } = useParams(); // Получаем ID из URL [cite: 177]
+//    const { id } = useParams();
 //    const navigate = useNavigate();
 //    const { technologies, updateStatus, updateNotes } = useTechnologies();
 
-//    // Находим конкретную технологию
 //    const tech = technologies.find(t => t.id === parseInt(id));
-
-//    // Локальное состояние для заметок, чтобы сохранять при потере фокуса или нажатии
-//    const [localNotes, setLocalNotes] = useState('');
-
-//    useEffect(() => {
-//        if (tech) {
-//            setLocalNotes(tech.notes || '');
-//        }
-//    }, [tech]);
 
 //    if (!tech) {
 //        return (
-//            <div className="detail-container">
-//                <h1 className="glitch-text">ERROR 404: DATA NOT FOUND</h1>
-//                <Link to="/" className="back-btn">&lt; RETURN TO BASE</Link>
+//            <div className="app" style={{ textAlign: 'center', marginTop: '100px' }}>
+//                <h1 className="glitch-text" style={{ color: 'red' }}>ERROR 404: PROTOCOL MISSING</h1>
+//                <Link to="/" className="action-btn random-next" style={{ display: 'inline-block', marginTop: '20px', textDecoration: 'none' }}>
+//                    RETURN TO BASE
+//                </Link>
 //            </div>
 //        );
 //    }
 
-//    const handleNoteChange = (e) => {
-//        setLocalNotes(e.target.value);
-//        updateNotes(tech.id, e.target.value);
-//    };
-
 //    return (
-//        <div className="detail-page" style={{ padding: '20px' }}>
-//            <Link to="/" className="back-btn blink-broken">&lt; RETURN TO GRID</Link>
+//        <div className="app" style={{ maxWidth: '800px', margin: '0 auto' }}>
+//            <button onClick={() => navigate(-1)} className="blink-broken TD-back-btn">
+//                &lt; BACK
+//            </button>
 
-//            <div className="detail-container">
-//                <div className="detail-header">
-//                    <h1 className="glitch-hover">{tech.title}</h1>
-//                    <div className={`status-text status-${tech.status}`}>
-//                        CURRENT STATUS: {tech.status.toUpperCase()}
-//                    </div>
+//            <div className={`technology-card ${tech.status}`} style={{ minHeight: '60vh' }}>
+//                <div className="card-header" style={{ borderBottom: '1px solid #004400', paddingBottom: '20px' }}>
+//                    <h1 className="glitch-hover" style={{ fontSize: '2em', margin: 0, color: tech.status === 'completed' ? '#00ff00' : tech.status == 'in-progress' ? '#ffaa00' : '#666'}}>{tech.title}</h1>
+//                    <span className={`status-badge ${tech.status}`} style={{ fontSize: '2em' }}>
+//                        {tech.status === 'completed' ? '✅' : tech.status === 'in-progress' ? '🔄' : '⏳'}
+//                    </span>
 //                </div>
 
-//                <div className="detail-section">
-//                    <h3>// SYSTEM_DESCRIPTION</h3>
-//                    <p className="detail-text">{tech.description}</p>
+//                <div className="TD-content">
+//                    <h3 style={{ color: '#008800' }}>// DESCRIPTION_LOG:</h3>
+//                    <p style={{ color: '#ccffcc', fontFamily: 'Roboto Mono', fontSize: '1.1em', lineHeight: '1.6' }}>
+//                        {tech.description}
+//                    </p>
 //                </div>
 
-//                <div className="detail-section">
-//                    <h3>// OVERRIDE_STATUS</h3>
+//                <div className="TD-content">
+//                    <h3 style={{ color: '#008800'}}>// MANUAL_OVERRIDE:</h3>
 //                    <div className="status-buttons-large">
 //                        <button
 //                            className={`status-btn ${tech.status === 'not-started' ? 'active' : ''}`}
@@ -75,22 +68,14 @@
 //                    </div>
 //                </div>
 
-//                <div className="detail-section">
-//                    <h3>// USER_LOGS (NOTES)</h3>
+//                <div style={{ margin: '30px 0' }}>
+//                    <h3 style={{ color: '#008800', fontFamily: 'Courier New' }}>// USER_NOTES:</h3>
 //                    <textarea
-//                        className="notes-area"
-//                        style={{
-//                            width: '100%',
-//                            minHeight: '150px',
-//                            background: '#001100',
-//                            border: '1px solid #005500',
-//                            color: '#00ff00',
-//                            fontFamily: 'monospace',
-//                            padding: '10px'
-//                        }}
-//                        value={localNotes}
-//                        onChange={handleNoteChange}
-//                        placeholder="ENTER LOG DATA..."
+//                        className="notes-textarea"
+//                        value={tech.notes || ''}
+//                        onChange={(e) => updateNotes(tech.id, e.target.value)}
+//                        rows="10"
+//                        placeholder="ENTER ADDITIONAL DATA..."
 //                    />
 //                </div>
 //            </div>
@@ -103,14 +88,19 @@
 import React from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import useTechnologies from '../hooks/useTechnologies';
-import '../components/TechnologyCard.css'; 
+import useTechnologyResources from '../hooks/useTechnologyResources'; // <--- Импорт нового хука
+import '../components/TechnologyCard.css';
 
 const TechnologyDetail = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const { technologies, updateStatus, updateNotes } = useTechnologies();
 
-    const tech = technologies.find(t => t.id === parseInt(id));
+    // Получаем ресурсы через наш новый "API" хук
+    const techId = parseInt(id);
+    const { resources, loading: resLoading, error: resError } = useTechnologyResources(techId);
+
+    const tech = technologies.find(t => t.id === techId);
 
     if (!tech) {
         return (
@@ -124,14 +114,14 @@ const TechnologyDetail = () => {
     }
 
     return (
-        <div className="app" style={{ maxWidth: '800px', margin: '0 auto' }}>
+        <div className="app" style={{ maxWidth: '800px', margin: '0 auto', paddingBottom: '50px' }}>
             <button onClick={() => navigate(-1)} className="blink-broken TD-back-btn">
                 &lt; BACK
             </button>
 
             <div className={`technology-card ${tech.status}`} style={{ minHeight: '60vh' }}>
                 <div className="card-header" style={{ borderBottom: '1px solid #004400', paddingBottom: '20px' }}>
-                    <h1 className="glitch-hover" style={{ fontSize: '2em', margin: 0, color: tech.status === 'completed' ? '#00ff00' : tech.status == 'in-progress' ? '#ffaa00' : '#666'}}>{tech.title}</h1>
+                    <h1 className="glitch-hover" style={{ fontSize: '2em', margin: 0, color: tech.status === 'completed' ? '#00ff00' : tech.status == 'in-progress' ? '#ffaa00' : '#666' }}>{tech.title}</h1>
                     <span className={`status-badge ${tech.status}`} style={{ fontSize: '2em' }}>
                         {tech.status === 'completed' ? '✅' : tech.status === 'in-progress' ? '🔄' : '⏳'}
                     </span>
@@ -144,8 +134,45 @@ const TechnologyDetail = () => {
                     </p>
                 </div>
 
+                {/* --- БЛОК ЗАДАНИЯ №2: EXTERNAL RESOURCES --- */}
+                <div className="TD-content" style={{ border: '1px dashed #004400', padding: '15px', background: 'rgba(0,10,0,0.5)' }}>
+                    <h3 style={{ color: '#00ff00', marginTop: 0 }}>// EXTERNAL_DATALINKS (API):</h3>
+
+                    {resLoading && (
+                        <div style={{ color: '#00aa00' }}>
+                            &gt; SEARCHING GLOBAL NETWORK... <span className="blink">█</span>
+                        </div>
+                    )}
+
+                    {resError && (
+                        <div style={{ color: '#ff3333' }}>
+                            &gt; CONNECTION_ERROR: {resError}
+                        </div>
+                    )}
+
+                    {!resLoading && !resError && (
+                        <ul style={{ listStyle: 'none', padding: 0 }}>
+                            {resources.map((res, index) => (
+                                <li key={index} style={{ marginBottom: '10px' }}>
+                                    <span style={{ color: '#005500' }}>[{index + 1}]</span>
+                                    <a
+                                        href={res.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        style={{ color: '#00ffff', textDecoration: 'none', marginLeft: '10px', fontFamily: 'monospace' }}
+                                        className="glitch-hover"
+                                    >
+                                        {res.title} &gt;&gt;
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </div>
+                {/* ------------------------------------------- */}
+
                 <div className="TD-content">
-                    <h3 style={{ color: '#008800'}}>// MANUAL_OVERRIDE:</h3>
+                    <h3 style={{ color: '#008800' }}>// MANUAL_OVERRIDE:</h3>
                     <div className="status-buttons-large">
                         <button
                             className={`status-btn ${tech.status === 'not-started' ? 'active' : ''}`}
@@ -177,6 +204,14 @@ const TechnologyDetail = () => {
                         onChange={(e) => updateNotes(tech.id, e.target.value)}
                         rows="10"
                         placeholder="ENTER ADDITIONAL DATA..."
+                        style={{
+                            width: '100%',
+                            background: '#050505',
+                            border: '1px solid #004400',
+                            color: '#00ff00',
+                            fontFamily: 'monospace',
+                            padding: '10px'
+                        }}
                     />
                 </div>
             </div>

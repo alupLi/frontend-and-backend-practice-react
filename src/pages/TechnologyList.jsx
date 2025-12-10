@@ -1,3 +1,106 @@
+﻿//import React, { useState } from 'react';
+//import TechnologyCard from '../components/TechnologyCard';
+//import ProgressHeader from '../components/ProgressHeader';
+//import QuickActions from '../components/QuickActions';
+//import FilterControls from '../components/FilterControls';
+//import SearchBox from '../components/SearchBox';
+//import useTechnologies from '../hooks/useTechnologies';
+
+//const TechnologyList = () => {
+//    const {
+//        technologies,
+//        setTechnologies,
+//        updateStatus,
+//        updateNotes
+//    } = useTechnologies();
+
+//    const [activeFilter, setActiveFilter] = useState('all');
+//    const [searchQuery, setSearchQuery] = useState('');
+
+//    const handleStatusChange = (id, newStatus) => {
+//        updateStatus(id, newStatus);
+//    };
+
+//    const handleMarkAllCompleted = () => {
+//        setTechnologies(prev => prev.map(tech => ({ ...tech, status: 'completed' })));
+//    };
+
+//    const handleResetAll = () => {
+//        setTechnologies(prev => prev.map(tech => ({ ...tech, status: 'not-started' })));
+//    };
+
+//    const handleRandomNext = () => {
+//        const notStarted = technologies.filter(t => t.status === 'not-started');
+//        if (notStarted.length === 0) {
+//            alert('SYSTEM MESSAGE: Все протоколы уже активированы!');
+//            return;
+//        }
+//        const randomTech = notStarted[Math.floor(Math.random() * notStarted.length)];
+//        // Можно тут сделать навигацию на детальную страницу, но пока просто меняем статус
+//        updateStatus(randomTech.id, 'in-progress');
+//        alert(`TARGET ACQUIRED: "${randomTech.title}"`);
+//    };
+
+//    // Фильтрация
+//    const searchFiltered = technologies.filter(tech =>
+//        tech.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+//        tech.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+//        (tech.notes && tech.notes.toLowerCase().includes(searchQuery.toLowerCase()))
+//    );
+
+//    const filteredTechnologies = searchFiltered.filter(tech => {
+//        if (activeFilter === 'all') return true;
+//        return tech.status === activeFilter;
+//    });
+
+//    return (
+//        <div className="app">
+//            <ProgressHeader technologies={technologies} />
+
+//            <SearchBox
+//                searchQuery={searchQuery}
+//                setSearchQuery={setSearchQuery}
+//                resultCount={filteredTechnologies.length}
+//            />
+
+//            <div className="controls-container">
+//                <QuickActions
+//                    onMarkAllCompleted={handleMarkAllCompleted}
+//                    onResetAll={handleResetAll}
+//                    onRandomNext={handleRandomNext}
+//                />
+//                <FilterControls
+//                    activeFilter={activeFilter}
+//                    onFilterChange={setActiveFilter}
+//                />
+//            </div>
+
+//            <div className="technologies-grid">
+//                {filteredTechnologies.map(tech => (
+//                    <TechnologyCard
+//                        key={tech.id}
+//                        id={tech.id}
+//                        title={tech.title}
+//                        description={tech.description}
+//                        status={tech.status}
+//                        notes={tech.notes}
+//                        onStatusChange={handleStatusChange}
+//                        onNotesChange={updateNotes}
+//                    />
+//                ))}
+//            </div>
+
+//            {filteredTechnologies.length === 0 && (
+//                <div style={{ textAlign: 'center', color: '#005500', marginTop: '50px', fontFamily: 'monospace' }}>
+//                    &lt; NO_DATA_FOUND /&gt;
+//                </div>
+//            )}
+//        </div>
+//    );
+//};
+
+//export default TechnologyList;
+
 import React, { useState } from 'react';
 import TechnologyCard from '../components/TechnologyCard';
 import ProgressHeader from '../components/ProgressHeader';
@@ -5,6 +108,7 @@ import QuickActions from '../components/QuickActions';
 import FilterControls from '../components/FilterControls';
 import SearchBox from '../components/SearchBox';
 import useTechnologies from '../hooks/useTechnologies';
+import SystemAdvice from '../components/SystemAdvice';
 
 const TechnologyList = () => {
     const {
@@ -29,19 +133,25 @@ const TechnologyList = () => {
         setTechnologies(prev => prev.map(tech => ({ ...tech, status: 'not-started' })));
     };
 
+    // --- 2. Функция для импорта данных (передается в QuickActions) ---
+    const handleImportData = (newTechnologies) => {
+        // Можно спросить подтверждение перед заменой
+        if (window.confirm('WARNING: THIS WILL OVERWRITE CURRENT DATA. PROCEED?')) {
+            setTechnologies(newTechnologies);
+        }
+    };
+
     const handleRandomNext = () => {
         const notStarted = technologies.filter(t => t.status === 'not-started');
         if (notStarted.length === 0) {
-            alert('SYSTEM MESSAGE: ��� ��������� ��� ������������!');
+            alert('SYSTEM MESSAGE: Все протоколы уже активированы!');
             return;
         }
         const randomTech = notStarted[Math.floor(Math.random() * notStarted.length)];
-        // ����� ��� ������� ��������� �� ��������� ��������, �� ���� ������ ������ ������
         updateStatus(randomTech.id, 'in-progress');
         alert(`TARGET ACQUIRED: "${randomTech.title}"`);
     };
 
-    // ����������
     const searchFiltered = technologies.filter(tech =>
         tech.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         tech.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -57,6 +167,10 @@ const TechnologyList = () => {
         <div className="app">
             <ProgressHeader technologies={technologies} />
 
+            {/* --- 3. Вставка виджета с реальным API --- */}
+            {/* Вставляем его сразу под хедером или перед поиском */}
+            <SystemAdvice />
+
             <SearchBox
                 searchQuery={searchQuery}
                 setSearchQuery={setSearchQuery}
@@ -68,6 +182,8 @@ const TechnologyList = () => {
                     onMarkAllCompleted={handleMarkAllCompleted}
                     onResetAll={handleResetAll}
                     onRandomNext={handleRandomNext}
+                    technologies={technologies}
+                    onImportData={handleImportData}  /* <--- Передаем проп импорта */
                 />
                 <FilterControls
                     activeFilter={activeFilter}
