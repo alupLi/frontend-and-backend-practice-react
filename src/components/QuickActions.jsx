@@ -28,6 +28,31 @@ const QuickActions = ({ onMarkAllCompleted, onResetAll, onRandomNext, technologi
         fileInputRef.current.click();
     };
 
+    //const handleFileChange = (e) => {
+    //    const file = e.target.files[0];
+    //    if (!file) return;
+
+    //    const reader = new FileReader();
+    //    reader.onload = (event) => {
+    //        try {
+    //            const parsedData = JSON.parse(event.target.result);
+    //            // Валидация: проверяем, есть ли массив technologies
+    //            if (parsedData.technologies && Array.isArray(parsedData.technologies)) {
+    //                onImportData(parsedData.technologies);
+    //                alert('SYSTEM UPDATE: DATA PACKETS INTEGRATED SUCCESSFULLY');
+    //            } else {
+    //                throw new Error('Invalid structure');
+    //            }
+    //        } catch (error) {
+    //            alert('ERROR: CORRUPTED DATA FILE. UPLOAD ABORTED.');
+    //            console.error(error);
+    //        }
+    //    };
+    //    reader.readAsText(file);
+    //    // Сбрасываем инпут, чтобы можно было загрузить тот же файл снова
+    //    e.target.value = '';
+    //};
+
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         if (!file) return;
@@ -35,22 +60,42 @@ const QuickActions = ({ onMarkAllCompleted, onResetAll, onRandomNext, technologi
         const reader = new FileReader();
         reader.onload = (event) => {
             try {
+                // 1. Пытаемся распарсить JSON
                 const parsedData = JSON.parse(event.target.result);
-                // Валидация: проверяем, есть ли массив technologies
-                if (parsedData.technologies && Array.isArray(parsedData.technologies)) {
-                    onImportData(parsedData.technologies);
-                    alert('SYSTEM UPDATE: DATA PACKETS INTEGRATED SUCCESSFULLY');
+
+                // 2. Валидация структуры (Проверка задания 3)
+                // Если это массив (старый формат) или объект с полем technologies (новый формат)
+                let dataToImport = [];
+
+                if (Array.isArray(parsedData)) {
+                    dataToImport = parsedData;
+                } else if (parsedData.technologies && Array.isArray(parsedData.technologies)) {
+                    dataToImport = parsedData.technologies;
                 } else {
-                    throw new Error('Invalid structure');
+                    throw new Error('INVALID_DATA_STRUCTURE: JSON must contain an array of technologies.');
                 }
+
+                // 3. Дополнительная проверка содержимого (есть ли обязательные поля)
+                const isValidContent = dataToImport.every(item => item.hasOwnProperty('title') && item.hasOwnProperty('id'));
+
+                if (!isValidContent) {
+                    throw new Error('CORRUPTED_DATA: Missing required fields (id, title) in some records.');
+                }
+
+                // Если всё ок - импортируем
+                onImportData(dataToImport);
+                alert(`SUCCESS: ${dataToImport.length} protocols loaded to memory.`);
+
             } catch (error) {
-                alert('ERROR: CORRUPTED DATA FILE. UPLOAD ABORTED.');
-                console.error(error);
+                // 4. Обработка ошибок (Вывод сообщения пользователю)
+                console.error("Import Error:", error);
+                alert(`IMPORT_FAILURE: ${error.message}\nCheck file format.`);
+            } finally {
+                // Сброс инпута, чтобы можно было выбрать тот же файл снова при ошибке
+                e.target.value = '';
             }
         };
         reader.readAsText(file);
-        // Сбрасываем инпут, чтобы можно было загрузить тот же файл снова
-        e.target.value = '';
     };
 
     return (

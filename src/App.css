@@ -127,8 +127,12 @@
         box-shadow: 0 0 10px #ffaa00;
     }
 
+    .status-btn.active-not-started {
+        color: #000;
+        background: #636363;
+    }
     .status-btn:hover {
-/*        transform: translateY(-2px);*/
+        /*        transform: translateY(-2px);*/
         border-color: #fff;
         color: #fff;
     }

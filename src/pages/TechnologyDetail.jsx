@@ -1,7 +1,140 @@
-﻿import React from 'react';
+﻿//import React from 'react';
+//import { useParams, Link, useNavigate } from 'react-router-dom';
+//import useTechnologies from '../hooks/useTechnologies';
+//import useTechnologyResources from '../hooks/useTechnologyResources';
+//import '../components/TechnologyCard.css';
+
+//const TechnologyDetail = () => {
+//    const { id } = useParams();
+//    const navigate = useNavigate();
+//    const { technologies, updateStatus, updateNotes } = useTechnologies();
+
+//    const techId = parseInt(id);
+//    const { resources, loading: resLoading, error: resError } = useTechnologyResources(techId);
+
+//    const tech = technologies.find(t => t.id === techId);
+
+//    if (!tech) {
+//        return (
+//            <div className="app" style={{ textAlign: 'center', marginTop: '100px' }}>
+//                <h1 className="glitch-text" style={{ color: 'red' }}>ERROR 404: PROTOCOL MISSING</h1>
+//                <Link to="/" className="action-btn random-next" style={{ display: 'inline-block', marginTop: '20px', textDecoration: 'none' }}>
+//                    RETURN TO BASE
+//                </Link>
+//            </div>
+//        );
+//    }
+
+//    return (
+//        <div className="app" style={{ maxWidth: '800px', margin: '0 auto', paddingBottom: '50px' }}>
+//            <button onClick={() => navigate(-1)} className="blink-broken TD-back-btn">
+//                &lt; BACK
+//            </button>
+
+//            <div className={`technology-card ${tech.status}`} style={{ minHeight: '60vh' }}>
+//                <div className="card-header" style={{ borderBottom: '1px solid #004400', paddingBottom: '20px' }}>
+//                    <h1 className="glitch-hover" style={{ fontSize: '2em', margin: 0, color: tech.status === 'completed' ? '#00ff00' : tech.status == 'in-progress' ? '#ffaa00' : '#666' }}>{tech.title}</h1>
+//                    <span className={`status-badge ${tech.status}`} style={{ fontSize: '2em' }}>
+//                        {tech.status === 'completed' ? '✅' : tech.status === 'in-progress' ? '🔄' : '⏳'}
+//                    </span>
+//                </div>
+
+//                <div className="TD-content">
+//                    <h3 style={{ color: '#008800' }}>// DESCRIPTION_LOG:</h3>
+//                    <p style={{ color: '#ccffcc', fontFamily: 'Roboto Mono', fontSize: '1.1em', lineHeight: '1.6' }}>
+//                        {tech.description}
+//                    </p>
+//                </div>
+
+//                <div className="TD-content" style={{ border: '1px dashed #004400', padding: '15px', background: 'rgba(0,10,0,0.5)' }}>
+//                    <h3 style={{ color: '#00ff00', marginTop: 0 }}>// EXTERNAL_DATALINKS:</h3>
+
+//                    {resLoading && (
+//                        <div style={{ color: '#00aa00' }}>
+//                            &gt; SEARCHING GLOBAL NETWORK... <span className="blink">█</span>
+//                        </div>
+//                    )}
+
+//                    {resError && (
+//                        <div style={{ color: '#ff3333' }}>
+//                            &gt; CONNECTION_ERROR: {resError}
+//                        </div>
+//                    )}
+
+//                    {!resLoading && !resError && (
+//                        <ul style={{ listStyle: 'none', padding: 0 }}>
+//                            {resources.map((res, index) => (
+//                                <li key={index} style={{ marginBottom: '10px' }}>
+//                                    <span style={{ color: '#005500' }}>[{index + 1}]</span>
+//                                    <a
+//                                        href={res.url}
+//                                        target="_blank"
+//                                        rel="noopener noreferrer"
+//                                        style={{ color: '#00ffff', textDecoration: 'none', marginLeft: '10px', fontFamily: 'monospace' }}
+//                                        className="glitch-hover"
+//                                    >
+//                                        {res.title} &gt;&gt;
+//                                    </a>
+//                                </li>
+//                            ))}
+//                        </ul>
+//                    )}
+//                </div>
+
+//                <div className="TD-content">
+//                    <h3 style={{ color: '#008800' }}>// MANUAL_OVERRIDE:</h3>
+//                    <div className="status-buttons-large">
+//                        <button
+//                            className={`status-btn ${tech.status === 'not-started' ? 'active' : ''}`}
+//                            onClick={() => updateStatus(tech.id, 'not-started')}
+//                            style={{ color: '#777', borderColor: '#777' }}
+//                        >
+//                            [ NOT STARTED ]
+//                        </button>
+//                        <button
+//                            className={`status-btn ${tech.status === 'in-progress' ? 'active-progress' : ''}`}
+//                            onClick={() => updateStatus(tech.id, 'in-progress')}
+//                        >
+//                            [ IN PROGRESS ]
+//                        </button>
+//                        <button
+//                            className={`status-btn ${tech.status === 'completed' ? 'active-completed' : ''}`}
+//                            onClick={() => updateStatus(tech.id, 'completed')}
+//                        >
+//                            [ COMPLETED ]
+//                        </button>
+//                    </div>
+//                </div>
+
+//                <div style={{ margin: '30px 0' }}>
+//                    <h3 style={{ color: '#008800', fontFamily: 'Courier New' }}>// USER_NOTES:</h3>
+//                    <textarea
+//                        className="notes-textarea"
+//                        value={tech.notes || ''}
+//                        onChange={(e) => updateNotes(tech.id, e.target.value)}
+//                        rows="10"
+//                        placeholder="ENTER ADDITIONAL DATA..."
+//                        style={{
+//                            width: '100%',
+//                            background: '#050505',
+//                            border: '1px solid #004400',
+//                            color: '#00ff00',
+//                            fontFamily: 'monospace',
+//                            padding: '10px'
+//                        }}
+//                    />
+//                </div>
+//            </div>
+//        </div>
+//    );
+//};
+
+//export default TechnologyDetail;
+
+
+import React from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import useTechnologies from '../hooks/useTechnologies';
-import useTechnologyResources from '../hooks/useTechnologyResources';
 import '../components/TechnologyCard.css';
 
 const TechnologyDetail = () => {
@@ -10,8 +143,6 @@ const TechnologyDetail = () => {
     const { technologies, updateStatus, updateNotes } = useTechnologies();
 
     const techId = parseInt(id);
-    const { resources, loading: resLoading, error: resError } = useTechnologyResources(techId);
-
     const tech = technologies.find(t => t.id === techId);
 
     if (!tech) {
@@ -25,69 +156,111 @@ const TechnologyDetail = () => {
         );
     }
 
+    // Форматирование даты
+    const formatDate = (dateString) => {
+        if (!dateString) return 'NOT_SET';
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return new Date(dateString).toLocaleDateString('ru-RU', options);
+    };
+
+    // Подсчет дней до дедлайна
+    const getDaysLeft = (dateString) => {
+        if (!dateString) return null;
+        const diff = new Date(dateString) - new Date();
+        const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+        return days;
+    };
+
+    const daysLeft = getDaysLeft(tech.deadline);
+
     return (
-        <div className="app" style={{ maxWidth: '800px', margin: '0 auto', paddingBottom: '50px' }}>
-            <button onClick={() => navigate(-1)} className="blink-broken TD-back-btn">
-                &lt; BACK
-            </button>
+        <div className="app" style={{ maxWidth: '900px', margin: '0 auto', paddingBottom: '50px' }}>
+            {/* Навигация */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+                <button onClick={() => navigate(-1)} className="blink-broken TD-back-btn">
+                    &lt; BACK
+                </button>
+                <div style={{ fontFamily: 'monospace', color: '#005500' }}>ID: #{tech.id.toString().padStart(4, '0')}</div>
+            </div>
 
-            <div className={`technology-card ${tech.status}`} style={{ minHeight: '60vh' }}>
-                <div className="card-header" style={{ borderBottom: '1px solid #004400', paddingBottom: '20px' }}>
-                    <h1 className="glitch-hover" style={{ fontSize: '2em', margin: 0, color: tech.status === 'completed' ? '#00ff00' : tech.status == 'in-progress' ? '#ffaa00' : '#666' }}>{tech.title}</h1>
-                    <span className={`status-badge ${tech.status}`} style={{ fontSize: '2em' }}>
-                        {tech.status === 'completed' ? '✅' : tech.status === 'in-progress' ? '🔄' : '⏳'}
-                    </span>
+            <div className="detail-container" style={{ padding: '30px', border: '1px solid #005500', background: 'rgba(0,10,0,0.8)' }}>
+
+                {/* Заголовок и Статус */}
+                <div style={{ borderBottom: '2px solid #00ff00', paddingBottom: '20px', marginBottom: '20px' }}>
+                    <h1 className="glitch-text" style={{ fontSize: '2.5em', marginBottom: '10px' }}>
+                        {tech.title}
+                    </h1>
+                    <div style={{ display: 'flex', gap: '15px', fontFamily: 'monospace', color: '#88ff88' }}>
+                        <span>CATEGORY: [{tech.category?.toUpperCase() || 'UNKNOWN'}]</span>
+                        <span>|</span>
+                        <span>DIFFICULTY: [{tech.difficulty?.toUpperCase() || 'LVL 1'}]</span>
+                    </div>
                 </div>
 
-                <div className="TD-content">
-                    <h3 style={{ color: '#008800' }}>// DESCRIPTION_LOG:</h3>
-                    <p style={{ color: '#ccffcc', fontFamily: 'Roboto Mono', fontSize: '1.1em', lineHeight: '1.6' }}>
-                        {tech.description}
-                    </p>
+                {/* Описание */}
+                <div style={{ marginBottom: '30px' }}>
+                    <h3 style={{ color: '#008800', fontFamily: 'Courier New' }}>// SYSTEM_DESCRIPTION:</h3>
+                    <p className="detail-text" style={{ marginTop: '10px' }}>{tech.description}</p>
                 </div>
 
-                <div className="TD-content" style={{ border: '1px dashed #004400', padding: '15px', background: 'rgba(0,10,0,0.5)' }}>
-                    <h3 style={{ color: '#00ff00', marginTop: 0 }}>// EXTERNAL_DATALINKS:</h3>
-
-                    {resLoading && (
-                        <div style={{ color: '#00aa00' }}>
-                            &gt; SEARCHING GLOBAL NETWORK... <span className="blink">█</span>
+                {/* БЛОК С ДЕДЛАЙНОМ И РЕСУРСАМИ (НОВОЕ) */}
+                <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: '1fr 1fr',
+                    gap: '20px',
+                    marginBottom: '30px',
+                    padding: '15px',
+                    border: '1px dashed #004400',
+                    background: 'rgba(0, 20, 0, 0.3)'
+                }}>
+                    {/* Сроки */}
+                    <div>
+                        <h4 style={{ color: '#ffaa00', fontFamily: 'monospace' }}>:: TIME_LIMIT ::</h4>
+                        <div style={{ marginTop: '10px', fontFamily: 'monospace', fontSize: '1.1em' }}>
+                            Target: <span style={{ color: '#fff' }}>{formatDate(tech.deadline)}</span>
+                            {daysLeft !== null && (
+                                <div style={{
+                                    marginTop: '5px',
+                                    color: daysLeft < 0 ? '#ff3300' : (daysLeft < 3 ? '#ffaa00' : '#00ff00')
+                                }}>
+                                    {daysLeft < 0 ? `[ CRITICAL: OVERDUE BY ${Math.abs(daysLeft)} DAYS ]` : `[ T-MINUS ${daysLeft} DAYS ]`}
+                                </div>
+                            )}
                         </div>
-                    )}
+                    </div>
 
-                    {resError && (
-                        <div style={{ color: '#ff3333' }}>
-                            &gt; CONNECTION_ERROR: {resError}
-                        </div>
-                    )}
-
-                    {!resLoading && !resError && (
-                        <ul style={{ listStyle: 'none', padding: 0 }}>
-                            {resources.map((res, index) => (
-                                <li key={index} style={{ marginBottom: '10px' }}>
-                                    <span style={{ color: '#005500' }}>[{index + 1}]</span>
-                                    <a
-                                        href={res.url}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        style={{ color: '#00ffff', textDecoration: 'none', marginLeft: '10px', fontFamily: 'monospace' }}
-                                        className="glitch-hover"
-                                    >
-                                        {res.title} &gt;&gt;
-                                    </a>
-                                </li>
-                            ))}
+                    {/* Ресурсы */}
+                    <div>
+                        <h4 style={{ color: '#00ffff', fontFamily: 'monospace' }}>:: EXTERNAL_LINKS ::</h4>
+                        <ul style={{ listStyle: 'none', padding: 0, marginTop: '10px' }}>
+                            {tech.resources && tech.resources.length > 0 ? (
+                                tech.resources.map((link, idx) => (
+                                    <li key={idx} style={{ marginBottom: '5px' }}>
+                                        <a
+                                            href={link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            style={{ color: '#00ccff', textDecoration: 'none', fontFamily: 'monospace' }}
+                                            className="glitch-hover"
+                                        >
+                                            &gt; ACCESS_DATA_NODE_{idx + 1}
+                                        </a>
+                                    </li>
+                                ))
+                            ) : (
+                                <li style={{ color: '#444', fontFamily: 'monospace' }}>&lt; NO_LINKS_DETECTED /&gt;</li>
+                            )}
                         </ul>
-                    )}
+                    </div>
                 </div>
 
+                {/* Управление статусом */}
                 <div className="TD-content">
-                    <h3 style={{ color: '#008800' }}>// MANUAL_OVERRIDE:</h3>
+                    <h3 style={{ color: '#008800', fontFamily: 'Courier New', marginBottom: '15px' }}>// UPDATE_STATUS_PROTOCOL:</h3>
                     <div className="status-buttons-large">
                         <button
-                            className={`status-btn ${tech.status === 'not-started' ? 'active' : ''}`}
+                            className={`status-btn ${tech.status === 'not-started' ? 'active-not-started' : ''}`}
                             onClick={() => updateStatus(tech.id, 'not-started')}
-                            style={{ color: '#777', borderColor: '#777' }}
                         >
                             [ NOT STARTED ]
                         </button>
@@ -106,22 +279,16 @@ const TechnologyDetail = () => {
                     </div>
                 </div>
 
+                {/* Заметки */}
                 <div style={{ margin: '30px 0' }}>
                     <h3 style={{ color: '#008800', fontFamily: 'Courier New' }}>// USER_NOTES:</h3>
                     <textarea
                         className="notes-textarea"
                         value={tech.notes || ''}
                         onChange={(e) => updateNotes(tech.id, e.target.value)}
-                        rows="10"
+                        rows="8"
                         placeholder="ENTER ADDITIONAL DATA..."
-                        style={{
-                            width: '100%',
-                            background: '#050505',
-                            border: '1px solid #004400',
-                            color: '#00ff00',
-                            fontFamily: 'monospace',
-                            padding: '10px'
-                        }}
+                        style={{ width: '100%', marginTop: '10px' }}
                     />
                 </div>
             </div>

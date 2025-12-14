@@ -87,7 +87,7 @@ const TechnologyList = () => {
     return (
         <div className="app">
             <h1 className="glitch-text" style={{ textAlign: 'center', margin: '20px 0', fontFamily: 'Courier New' }}>
-                // GLOBAL_NETWORK_SEARCH (API)
+                // GLOBAL_NETWORK_SEARCH (VIEWING ONLY)
             </h1>
 
             <SearchBox

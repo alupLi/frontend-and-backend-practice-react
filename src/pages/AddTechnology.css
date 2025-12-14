@@ -1,0 +1,113 @@
+﻿/* Главный контейнер (ранее: style={{ maxWidth: '700px', margin: '0 auto', padding: '20px' }}) */
+.add-tech-container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Заголовок (ранее: style={{ borderBottom: '2px solid #00ff00', paddingBottom: '15px', marginBottom: '30px' }}) */
+.add-tech-header {
+    border-bottom: 2px solid #00ff00;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+}
+
+/* Стиль для всех меток/лейблов (ранее: labelStyle) */
+.form-label {
+    color: #008800;
+    font-family: monospace;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Базовый стиль для input, textarea, select (ранее: часть inputStyle) */
+.form-input {
+    width: 100%;
+    padding: 12px;
+    background: rgba(0, 20, 0, 0.8);
+    border: 1px solid #005500;
+    color: #00ff00;
+    font-family: monospace;
+    margin-bottom: 5px; /* Перенесено из JSX */
+    box-sizing: border-box; /* Важно для 100% ширины */
+}
+
+    /* Стиль для input/textarea в состоянии ошибки (ранее: hasError в inputStyle) */
+    .form-input.error {
+        border: 1px solid #ff3300;
+        color: #ff3300;
+    }
+
+/* Стиль для сообщения об ошибке (ранее: errorStyle) */
+.form-error {
+    color: #ff3300;
+    font-size: 0.8em;
+    font-family: 'Courier New', monospace;
+    margin-bottom: 15px;
+    display: block;
+}
+
+/* Группа "Категория и Сложность" (ранее: display: flex, gap: 20px) */
+.category-difficulty-group {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+/* Обертка для select'ов (ранее: flex: 1) */
+.form-select-wrapper {
+    flex: 1;
+}
+
+/* Группа для ввода ресурсов (ссылок) (ранее: display: flex, gap: 10px) */
+.resource-input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+/* Обертка для инпута ресурса (ранее: flex: 1) */
+.resource-input-wrapper {
+    flex: 1;
+}
+
+/* Кнопка удаления ресурса [DEL] */
+.resource-delete-btn {
+    background: transparent;
+    border: 1px solid #ff3300;
+    color: #ff3300;
+    cursor: pointer;
+    font-family: monospace;
+    height: 42px; /* Высота для соответствия инпуту */
+    padding: 0 15px;
+}
+
+/* Кнопка добавления ресурса + ADD_LINK_SLOT */
+.add-resource-btn {
+    background: transparent;
+    border: 1px dashed #00ff00;
+    color: #00ff00;
+    width: 100%;
+    padding: 10px;
+    cursor: pointer;
+    font-family: monospace;
+    margin-top: 5px;
+}
+
+/* Группа кнопок UPLOAD_DATA и ABORT */
+.form-buttons-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+/* Базовый стиль для кнопок submit/abort */
+.form-action-button {
+    flex: 1;
+}
+
+    /* Стиль для кнопки submit, когда она заблокирована */
+    .form-action-button.disabled-invalid {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
