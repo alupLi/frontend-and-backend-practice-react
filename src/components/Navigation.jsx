@@ -16,6 +16,7 @@ const Navigation = () => {
             </div>
             <div className="nav-links">
                 <Link to="/" className={getLinkClass('/')}>[HOME]</Link>
+                <Link to="/list" className={getLinkClass('/list')}>[List]</Link>
                 <Link to="/add" className={getLinkClass('/add')}>[ADD]</Link>
                 <Link to="/stats" className={getLinkClass('/stats')}>[STATS]</Link>
                 <Link to="/settings" className={getLinkClass('/settings')}>[CONFIG]</Link>

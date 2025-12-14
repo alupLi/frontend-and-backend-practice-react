@@ -1,214 +1,152 @@
-﻿//import React, { useState } from 'react';
-//import TechnologyCard from '../components/TechnologyCard';
-//import ProgressHeader from '../components/ProgressHeader';
-//import QuickActions from '../components/QuickActions';
-//import FilterControls from '../components/FilterControls';
-//import SearchBox from '../components/SearchBox';
-//import useTechnologies from '../hooks/useTechnologies';
+﻿
 
-//const TechnologyList = () => {
-//    const {
-//        technologies,
-//        setTechnologies,
-//        updateStatus,
-//        updateNotes
-//    } = useTechnologies();
-
-//    const [activeFilter, setActiveFilter] = useState('all');
-//    const [searchQuery, setSearchQuery] = useState('');
-
-//    const handleStatusChange = (id, newStatus) => {
-//        updateStatus(id, newStatus);
-//    };
-
-//    const handleMarkAllCompleted = () => {
-//        setTechnologies(prev => prev.map(tech => ({ ...tech, status: 'completed' })));
-//    };
-
-//    const handleResetAll = () => {
-//        setTechnologies(prev => prev.map(tech => ({ ...tech, status: 'not-started' })));
-//    };
-
-//    const handleRandomNext = () => {
-//        const notStarted = technologies.filter(t => t.status === 'not-started');
-//        if (notStarted.length === 0) {
-//            alert('SYSTEM MESSAGE: Все протоколы уже активированы!');
-//            return;
-//        }
-//        const randomTech = notStarted[Math.floor(Math.random() * notStarted.length)];
-//        // Можно тут сделать навигацию на детальную страницу, но пока просто меняем статус
-//        updateStatus(randomTech.id, 'in-progress');
-//        alert(`TARGET ACQUIRED: "${randomTech.title}"`);
-//    };
-
-//    // Фильтрация
-//    const searchFiltered = technologies.filter(tech =>
-//        tech.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-//        tech.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-//        (tech.notes && tech.notes.toLowerCase().includes(searchQuery.toLowerCase()))
-//    );
-
-//    const filteredTechnologies = searchFiltered.filter(tech => {
-//        if (activeFilter === 'all') return true;
-//        return tech.status === activeFilter;
-//    });
-
-//    return (
-//        <div className="app">
-//            <ProgressHeader technologies={technologies} />
-
-//            <SearchBox
-//                searchQuery={searchQuery}
-//                setSearchQuery={setSearchQuery}
-//                resultCount={filteredTechnologies.length}
-//            />
-
-//            <div className="controls-container">
-//                <QuickActions
-//                    onMarkAllCompleted={handleMarkAllCompleted}
-//                    onResetAll={handleResetAll}
-//                    onRandomNext={handleRandomNext}
-//                />
-//                <FilterControls
-//                    activeFilter={activeFilter}
-//                    onFilterChange={setActiveFilter}
-//                />
-//            </div>
-
-//            <div className="technologies-grid">
-//                {filteredTechnologies.map(tech => (
-//                    <TechnologyCard
-//                        key={tech.id}
-//                        id={tech.id}
-//                        title={tech.title}
-//                        description={tech.description}
-//                        status={tech.status}
-//                        notes={tech.notes}
-//                        onStatusChange={handleStatusChange}
-//                        onNotesChange={updateNotes}
-//                    />
-//                ))}
-//            </div>
-
-//            {filteredTechnologies.length === 0 && (
-//                <div style={{ textAlign: 'center', color: '#005500', marginTop: '50px', fontFamily: 'monospace' }}>
-//                    &lt; NO_DATA_FOUND /&gt;
-//                </div>
-//            )}
-//        </div>
-//    );
-//};
-
-//export default TechnologyList;
-
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import TechnologyCard from '../components/TechnologyCard';
-import ProgressHeader from '../components/ProgressHeader';
-import QuickActions from '../components/QuickActions';
-import FilterControls from '../components/FilterControls';
 import SearchBox from '../components/SearchBox';
-import useTechnologies from '../hooks/useTechnologies';
-import SystemAdvice from '../components/SystemAdvice';
+
+
+// ВСТАВЬ СЮДА СВОЮ ССЫЛКУ С GITHUB (RAW версия)
+const API_URL = 'https://raw.githubusercontent.com/alupLi/frontend-and-backend-practice-react/refs/heads/main/technologies.json';
 
 const TechnologyList = () => {
-    const {
-        technologies,
-        setTechnologies,
-        updateStatus,
-        updateNotes
-    } = useTechnologies();
-
-    const [activeFilter, setActiveFilter] = useState('all');
+    const [technologies, setTechnologies] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
-    const handleStatusChange = (id, newStatus) => {
-        updateStatus(id, newStatus);
-    };
+    // Refs для отмены запросов и таймера
+    const searchTimeoutRef = useRef(null);
+    const abortControllerRef = useRef(null);
 
-    const handleMarkAllCompleted = () => {
-        setTechnologies(prev => prev.map(tech => ({ ...tech, status: 'completed' })));
-    };
+    const fetchTechnologies = async (query, signal) => {
+        try {
+            setLoading(true);
+            setError(null);
 
-    const handleResetAll = () => {
-        setTechnologies(prev => prev.map(tech => ({ ...tech, status: 'not-started' })));
-    };
+            // 1. Имитация задержки сети, чтобы было видно спиннер (как в задании)
+            await new Promise(resolve => setTimeout(resolve, 1000));
 
-    // --- 2. Функция для импорта данных (передается в QuickActions) ---
-    const handleImportData = (newTechnologies) => {
-        // Можно спросить подтверждение перед заменой
-        if (window.confirm('WARNING: THIS WILL OVERWRITE CURRENT DATA. PROCEED?')) {
-            setTechnologies(newTechnologies);
+            // 2. Реальный Fetch запрос к GitHub
+            // Мы передаем signal, чтобы запрос можно было прервать
+            const response = await fetch(API_URL, { signal });
+
+            if (!response.ok) {
+                throw new Error(`HTTP Error: ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            // 3. Фильтрация данных
+            // Так как GitHub отдает статический JSON, мы фильтруем полученные данные здесь.
+            // Это имитирует поиск на сервере.
+            let filteredData = data;
+            if (query) {
+                filteredData = data.filter(tech =>
+                    tech.title.toLowerCase().includes(query.toLowerCase()) ||
+                    tech.description.toLowerCase().includes(query.toLowerCase())
+                );
+            }
+
+            setTechnologies(filteredData);
+
+        } catch (err) {
+            // Если ошибка вызвана отменой запроса (AbortController), игнорируем её
+            if (err.name !== 'AbortError') {
+                console.error('Ошибка загрузки:', err);
+                setError('SYSTEM FAILURE: UNABLE TO RETRIEVE DATA PACKETS');
+            }
+        } finally {
+            // Если запрос не был отменен, выключаем загрузку
+            if (!signal?.aborted) {
+                setLoading(false);
+            }
         }
     };
 
-    const handleRandomNext = () => {
-        const notStarted = technologies.filter(t => t.status === 'not-started');
-        if (notStarted.length === 0) {
-            alert('SYSTEM MESSAGE: Все протоколы уже активированы!');
-            return;
+    // Эффект Debounce (Задержка ввода)
+    useEffect(() => {
+        // Отменяем предыдущий запрос
+        if (abortControllerRef.current) {
+            abortControllerRef.current.abort();
         }
-        const randomTech = notStarted[Math.floor(Math.random() * notStarted.length)];
-        updateStatus(randomTech.id, 'in-progress');
-        alert(`TARGET ACQUIRED: "${randomTech.title}"`);
-    };
+        // Очищаем таймер
+        if (searchTimeoutRef.current) {
+            clearTimeout(searchTimeoutRef.current);
+        }
 
-    const searchFiltered = technologies.filter(tech =>
-        tech.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        tech.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        (tech.notes && tech.notes.toLowerCase().includes(searchQuery.toLowerCase()))
-    );
+        // Создаем новый контроллер отмены
+        const controller = new AbortController();
+        abortControllerRef.current = controller;
 
-    const filteredTechnologies = searchFiltered.filter(tech => {
-        if (activeFilter === 'all') return true;
-        return tech.status === activeFilter;
-    });
+        // Запускаем поиск только через 800мс после окончания ввода
+        searchTimeoutRef.current = setTimeout(() => {
+            fetchTechnologies(searchQuery, controller.signal);
+        }, 800);
+
+        return () => {
+            if (searchTimeoutRef.current) clearTimeout(searchTimeoutRef.current);
+            if (abortControllerRef.current) abortControllerRef.current.abort();
+        };
+    }, [searchQuery]);
+
+    // Заглушки для интерактивности (так как список только для чтения из API)
+    const handleStatusMock = () => alert('ACCESS DENIED: READ ONLY MODE (API)');
+    const handleNotesMock = () => { };
 
     return (
         <div className="app">
-            <ProgressHeader technologies={technologies} />
-
-            {/* --- 3. Вставка виджета с реальным API --- */}
-            {/* Вставляем его сразу под хедером или перед поиском */}
-            <SystemAdvice />
+            <h1 className="glitch-text" style={{ textAlign: 'center', margin: '20px 0', fontFamily: 'Courier New' }}>
+                // GLOBAL_NETWORK_SEARCH (API)
+            </h1>
 
             <SearchBox
                 searchQuery={searchQuery}
                 setSearchQuery={setSearchQuery}
-                resultCount={filteredTechnologies.length}
+                resultCount={loading ? 'Scanning...' : technologies.length}
             />
 
-            <div className="controls-container">
-                <QuickActions
-                    onMarkAllCompleted={handleMarkAllCompleted}
-                    onResetAll={handleResetAll}
-                    onRandomNext={handleRandomNext}
-                    technologies={technologies}
-                    onImportData={handleImportData}  /* <--- Передаем проп импорта */
-                />
-                <FilterControls
-                    activeFilter={activeFilter}
-                    onFilterChange={setActiveFilter}
-                />
-            </div>
+            {/* Лоадер */}
+            {loading && (
+                <div style={{ textAlign: 'center', padding: '40px', color: '#00ff00', fontFamily: 'monospace' }}>
+                    <div className="spinner" style={{
+                        width: '40px', height: '40px', border: '4px solid #003300',
+                        borderTop: '4px solid #00ff00', borderRadius: '50%',
+                        margin: '0 auto 20px', animation: 'spin 1s linear infinite'
+                    }}></div>
+                    &gt; DOWNLOAD IN PROGRESS...
+                    <style>{`@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }`}</style>
+                </div>
+            )}
 
-            <div className="technologies-grid">
-                {filteredTechnologies.map(tech => (
-                    <TechnologyCard
-                        key={tech.id}
-                        id={tech.id}
-                        title={tech.title}
-                        description={tech.description}
-                        status={tech.status}
-                        notes={tech.notes}
-                        onStatusChange={handleStatusChange}
-                        onNotesChange={updateNotes}
-                    />
-                ))}
-            </div>
+            {/* Ошибка */}
+            {error && (
+                <div style={{ color: '#ff3300', textAlign: 'center', border: '1px solid #ff3300', padding: '20px', margin: '20px 0' }}>
+                    ⚠ CRITICAL ERROR: {error}
+                </div>
+            )}
 
-            {filteredTechnologies.length === 0 && (
-                <div style={{ textAlign: 'center', color: '#005500', marginTop: '50px', fontFamily: 'monospace' }}>
-                    &lt; NO_DATA_FOUND /&gt;
+            {/* Результаты */}
+            {!loading && !error && (
+                <div className="technologies-grid">
+                    {technologies.length > 0 ? (
+                        technologies.map(tech => (
+                            <TechnologyCard
+                                key={tech.id}
+                                id={tech.id}
+                                title={tech.title}
+                                description={tech.description}
+                                status={tech.status}
+                                notes={tech.notes}
+                                onStatusChange={handleStatusMock}
+                                onNotesChange={handleNotesMock}
+                                cardInList={true}
+                            />
+                        ))
+                    ) : (
+                        <div style={{ textAlign: 'center', width: '100%', color: '#005500', fontFamily: 'monospace' }}>
+                            &lt; NO_DATA_FOUND /&gt;
+                        </div>
+                    )}
                 </div>
             )}
         </div>

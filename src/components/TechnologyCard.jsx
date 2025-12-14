@@ -71,10 +71,10 @@ import { Link } from 'react-router-dom';
 import './TechnologyCard.css';
 import TechnologyNotes from './TechnologyNotes';
 
-const TechnologyCard = ({ id, title, description, status, notes, onStatusChange, onNotesChange }) => {
+const TechnologyCard = ({ id, title, description, status, notes, onStatusChange, onNotesChange, cardInList=false }) => {
 
     const handleStatusClick = (e) => {
-        e.preventDefault(); // Предотвращаем переход, если вдруг внутри ссылки
+        e.preventDefault();
         e.stopPropagation();
 
         const nextStatus = {
@@ -103,6 +103,8 @@ const TechnologyCard = ({ id, title, description, status, notes, onStatusChange,
         }
     };
 
+    const technologyCardLink = cardInList ? `/list/technology/${id}` : `/technology/${id}`;
+
     return (
         <div className={`technology-card ${status}`}>
             {/* Декоративные пиксели */}
@@ -113,7 +115,7 @@ const TechnologyCard = ({ id, title, description, status, notes, onStatusChange,
 
             <div className="card-header">
                 {/* Заголовок теперь ссылка на детали */}
-                <Link to={`/technology/${id}`} style={{ textDecoration: 'none', flex: 1 }}>
+                <Link to={technologyCardLink} style={{ textDecoration: 'none', flex: 1 }}>
                     <h3 className="glitch-hover" style={{ cursor: 'pointer' }}>{title} &gt;</h3>
                 </Link>
 
@@ -140,7 +142,7 @@ const TechnologyCard = ({ id, title, description, status, notes, onStatusChange,
                 <span className="status-text">
                     STATUS: {getStatusText(status)}
                 </span>
-                <Link to={`/technology/${id}`} className="click-hint" style={{ textDecoration: 'none' }}>
+                <Link to={technologyCardLink} className="click-hint" style={{ textDecoration: 'none' }}>
                     ПОДРОБНЕЕ_&gt;
                 </Link>
             </div>
