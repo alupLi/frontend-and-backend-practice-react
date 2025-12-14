@@ -1,9 +1,7 @@
-﻿
-
-import React from 'react';
+﻿import React from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import useTechnologies from '../hooks/useTechnologies';
-import useTechnologyResources from '../hooks/useTechnologyResources'; // <--- Импорт нового хука
+import useTechnologyResources from '../hooks/useTechnologyResources';
 import '../components/TechnologyCard.css';
 
 const TechnologyDetail = () => {
@@ -11,7 +9,6 @@ const TechnologyDetail = () => {
     const navigate = useNavigate();
     const { technologies, updateStatus, updateNotes } = useTechnologies();
 
-    // Получаем ресурсы через наш новый "API" хук
     const techId = parseInt(id);
     const { resources, loading: resLoading, error: resError } = useTechnologyResources(techId);
 
@@ -49,9 +46,8 @@ const TechnologyDetail = () => {
                     </p>
                 </div>
 
-                {/* --- БЛОК ЗАДАНИЯ №2: EXTERNAL RESOURCES --- */}
                 <div className="TD-content" style={{ border: '1px dashed #004400', padding: '15px', background: 'rgba(0,10,0,0.5)' }}>
-                    <h3 style={{ color: '#00ff00', marginTop: 0 }}>// EXTERNAL_DATALINKS (API):</h3>
+                    <h3 style={{ color: '#00ff00', marginTop: 0 }}>// EXTERNAL_DATALINKS:</h3>
 
                     {resLoading && (
                         <div style={{ color: '#00aa00' }}>
@@ -84,7 +80,6 @@ const TechnologyDetail = () => {
                         </ul>
                     )}
                 </div>
-                {/* ------------------------------------------- */}
 
                 <div className="TD-content">
                     <h3 style={{ color: '#008800' }}>// MANUAL_OVERRIDE:</h3>

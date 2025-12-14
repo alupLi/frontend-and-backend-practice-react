@@ -1,5 +1,4 @@
-﻿
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 
 const initialTechnologies = [
     {
@@ -47,7 +46,6 @@ const initialTechnologies = [
 ];
 
 const useTechnologies = () => {
-    // Загружаем из localStorage при инициализации
     const [technologies, setTechnologies] = useState(() => {
         try {
             const saved = localStorage.getItem('techTrackerData');
@@ -60,7 +58,6 @@ const useTechnologies = () => {
         return initialTechnologies;
     });
 
-    // Сохраняем в localStorage при изменении
     useEffect(() => {
         try {
             localStorage.setItem('techTrackerData', JSON.stringify(technologies));

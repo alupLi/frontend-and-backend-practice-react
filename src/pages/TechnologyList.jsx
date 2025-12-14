@@ -1,11 +1,8 @@
-﻿
-
-import React, { useState, useEffect, useRef } from 'react';
+﻿import React, { useState, useEffect, useRef } from 'react';
 import TechnologyCard from '../components/TechnologyCard';
 import SearchBox from '../components/SearchBox';
 
 
-// ВСТАВЬ СЮДА СВОЮ ССЫЛКУ С GITHUB (RAW версия)
 const API_URL = 'https://raw.githubusercontent.com/alupLi/frontend-and-backend-practice-react/refs/heads/main/technologies.json';
 
 const TechnologyList = () => {
@@ -14,7 +11,6 @@ const TechnologyList = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    // Refs для отмены запросов и таймера
     const searchTimeoutRef = useRef(null);
     const abortControllerRef = useRef(null);
 
@@ -23,11 +19,8 @@ const TechnologyList = () => {
             setLoading(true);
             setError(null);
 
-            // 1. Имитация задержки сети, чтобы было видно спиннер (как в задании)
             await new Promise(resolve => setTimeout(resolve, 1000));
 
-            // 2. Реальный Fetch запрос к GitHub
-            // Мы передаем signal, чтобы запрос можно было прервать
             const response = await fetch(API_URL, { signal });
 
             if (!response.ok) {
@@ -36,7 +29,6 @@ const TechnologyList = () => {
 
             const data = await response.json();
 
-            // 3. Фильтрация данных
             // Так как GitHub отдает статический JSON, мы фильтруем полученные данные здесь.
             // Это имитирует поиск на сервере.
             let filteredData = data;
@@ -89,7 +81,6 @@ const TechnologyList = () => {
         };
     }, [searchQuery]);
 
-    // Заглушки для интерактивности (так как список только для чтения из API)
     const handleStatusMock = () => alert('ACCESS DENIED: READ ONLY MODE (API)');
     const handleNotesMock = () => { };
 
@@ -118,14 +109,12 @@ const TechnologyList = () => {
                 </div>
             )}
 
-            {/* Ошибка */}
             {error && (
                 <div style={{ color: '#ff3300', textAlign: 'center', border: '1px solid #ff3300', padding: '20px', margin: '20px 0' }}>
                     ⚠ CRITICAL ERROR: {error}
                 </div>
             )}
 
-            {/* Результаты */}
             {!loading && !error && (
                 <div className="technologies-grid">
                     {technologies.length > 0 ? (

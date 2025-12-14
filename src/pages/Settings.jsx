@@ -1,6 +1,5 @@
 ﻿import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-//import useTechnologies from '../hooks/useTechnologies';
 import Modal from '../components/Modal';
 import useTechnologies, { initialTechnologies } from '../hooks/useTechnologies';
 

@@ -1,10 +1,7 @@
-﻿
-import React from 'react';
+﻿import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import './App.css';
 import GlitchEffects from './components/GlitchEffects';
-
-// Импорт страниц
 import TechnologyList from './pages/TechnologyList';
 import TechnologyDetail from './pages/TechnologyDetail';
 import TechnologyListDetail from './pages/TechnologyListDetail';

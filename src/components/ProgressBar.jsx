@@ -1,4 +1,3 @@
-// ProgressBar.jsx
 import React from 'react';
 import './ProgressBar.css';
 
@@ -26,15 +25,6 @@ const ProgressBar = ({
                 )}
             </div>
         </div>
-
-        //<div className="progress-bar-container">
-        //        <div
-        //            className={`progress-bar ${isGlitching ? 'progress-bar-glitching' : ''}`}
-        //            style={{ width: `${isGlitching ? 0 : percentage}%` }}
-        //        >
-        //            <span className="progress-text">{percentage}%</span>
-        //        </div>
-        //</div>
     );
 };
 

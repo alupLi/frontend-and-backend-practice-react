@@ -9,7 +9,6 @@ const SystemAdvice = () => {
         setLoading(true);
         setError(null);
         try {
-            // API, который возвращает фразы в стиле "техно-бред"
             const response = await fetch('https://techy-api.vercel.app/api/json');
 
             if (!response.ok) {
@@ -17,7 +16,7 @@ const SystemAdvice = () => {
             }
 
             const data = await response.json();
-            setMessage(data.message); // У этого API поле называется message
+            setMessage(data.message);
         } catch (err) {
             console.error(err);
             setError('SIGNAL LOST. UNABLE TO DECODE EXTERNAL MESSAGE.');

@@ -1,22 +1,3 @@
-//import React, { useState } from 'react';
-//import TechnologyCard from '../components/TechnologyCard';
-//import ProgressHeader from '../components/ProgressHeader';
-//import QuickActions from '../components/QuickActions';
-//import FilterControls from '../components/FilterControls';
-//import SearchBox from '../components/SearchBox';
-//import useTechnologies from '../hooks/useTechnologies';
-//import SystemAdvice from '../components/SystemAdvice';
-
-//const HomePage = () => {
-//    return (
-//        <div className="app">
-//            <SystemAdvice />
-//        </div>
-//    );
-//};
-
-//export default HomePage;
-
 import React, { useState } from 'react';
 import TechnologyCard from '../components/TechnologyCard';
 import ProgressHeader from '../components/ProgressHeader';
@@ -49,9 +30,7 @@ const HomePage = () => {
         setTechnologies(prev => prev.map(tech => ({ ...tech, status: 'not-started' })));
     };
 
-    // --- 2. Функция для импорта данных (передается в QuickActions) ---
     const handleImportData = (newTechnologies) => {
-        // Можно спросить подтверждение перед заменой
         if (window.confirm('WARNING: THIS WILL OVERWRITE CURRENT DATA. PROCEED?')) {
             setTechnologies(newTechnologies);
         }

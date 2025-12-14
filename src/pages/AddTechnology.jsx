@@ -40,7 +40,7 @@ const AddTechnology = () => {
                         type="text"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
-                        className="notes-textarea" // Переиспользуем стиль textarea для инпута
+                        className="notes-textarea"
                         style={{ width: '100%', height: '40px' }}
                         placeholder="Введите название технологии..."
                         autoFocus

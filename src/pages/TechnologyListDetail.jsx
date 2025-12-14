@@ -2,14 +2,12 @@
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import '../components/TechnologyCard.css';
 
-// ВСТАВЬ СЮДА ТУ ЖЕ ССЫЛКУ С GITHUB
 const API_URL = 'https://raw.githubusercontent.com/alupLi/frontend-and-backend-practice-react/refs/heads/main/technologies.json';
 
 const TechnologyListDetail = () => {
     const { id } = useParams();
     const navigate = useNavigate();
 
-    // Используем локальный стейт, так как грузим данные из "Сети"
     const [tech, setTech] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -83,9 +81,8 @@ const TechnologyListDetail = () => {
                     </p>
                 </div>
 
-                {/* --- ВЫПОЛНЕНИЕ ЗАДАНИЯ 2: ВЫВОД РЕСУРСОВ ИЗ API --- */}
                 <div className="TD-content" style={{ border: '1px dashed #004400', padding: '15px', background: 'rgba(0,20,0,0.5)' }}>
-                    <h3 style={{ color: '#00ff00', marginTop: 0 }}>// LINKED_RESOURCES (GITHUB API):</h3>
+                    <h3 style={{ color: '#00ff00', marginTop: 0 }}>// LINKED_RESOURCES:</h3>
 
                     {tech.resources && tech.resources.length > 0 ? (
                         <ul style={{ listStyle: 'none', padding: 0 }}>
