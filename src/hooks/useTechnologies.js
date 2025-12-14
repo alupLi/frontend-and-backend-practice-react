@@ -108,7 +108,7 @@ const initialTechnologies = [
         description: 'Изучение функциональных и классовых компонентов, их жизненного цикла',
         category: 'frontend',
         difficulty: 'beginner',
-        deadline: '',
+        deadline: '2099-12-31',
         resources: [],
         status: 'completed',
         notes: ''
@@ -119,7 +119,7 @@ const initialTechnologies = [
         description: 'Освоение синтаксиса JSX, условного рендеринга и списков',
         category: 'frontend',
         difficulty: 'beginner',
-        deadline: '',
+        deadline: '2099-12-31',
         resources: [],
         status: 'completed',
         notes: ''
@@ -130,12 +130,11 @@ const initialTechnologies = [
         description: 'Работа с состоянием компонентов, использование хуков useState и useEffect',
         category: 'frontend',
         difficulty: 'intermediate',
-        deadline: '2024-12-31',
+        deadline: '2099-12-31',
         resources: ['https://react.dev'],
         status: 'in-progress',
         notes: ''
     },
-    // ... остальные элементы можно оставить как есть или дополнить полями
 ];
 
 const useTechnologies = () => {

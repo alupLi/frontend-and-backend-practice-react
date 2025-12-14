@@ -92,7 +92,7 @@ import TechnologyNotes from './TechnologyNotes';
 const TechnologyCard = ({
     id, title, description, status, notes,
     onStatusChange, onNotesChange,
-    isSelected, onToggleSelect, // Новые пропсы для выбора
+    isSelected, onToggleSelect,
     cardInList = false
 }) => {
 
@@ -136,30 +136,28 @@ const TechnologyCard = ({
             <div className="pixel-corner"></div>
             <div className="pixel-corner"></div>
 
-            {/* ЧЕКБОКС ДЛЯ ВЫБОРА (Задание 2) */}
-            {/* НОВЫЙ ЧЕКБОКС (Стиль: Терминальные скобки, Позиция: Слева) */}
             <div
                 onClick={(e) => { e.stopPropagation(); onToggleSelect(id); }}
                 style={{
                     position: 'absolute',
-                    top: '15px',       // Отступ сверху
-                    left: '15px',      // ТЕПЕРЬ СЛЕВА
+                    top: '15px',    
+                    left: '15px',    
                     cursor: 'pointer',
                     zIndex: 10,
                     fontFamily: 'monospace',
                     fontSize: '1.2em',
                     fontWeight: 'bold',
-                    color: isSelected ? '#00ff00' : '#005500', // Ярко-зеленый если выбран, темно-зеленый если нет
+                    color: isSelected ? '#00ff00' : '#005500',
                     textShadow: isSelected ? '0 0 5px #00ff00' : 'none',
                     userSelect: 'none'
                 }}
-                className="glitch-hover" // Добавим твой эффект при наведении
+                className="glitch-hover" 
                 title="Select unit"
             >
                 {isSelected ? '[ X ]' : '[   ]'}
             </div>
 
-            <div className="card-header" style={{ marginTop: '15px' }}> {/* Отступ для чекбокса */}
+            <div className="card-header" style={{ marginTop: '15px' }}> 
                 <Link to={technologyCardLink} style={{ textDecoration: 'none', flex: 1 }}>
                     <h3 className="glitch-hover" style={{ cursor: 'pointer' }}>{title} &gt;</h3>
                 </Link>
@@ -176,7 +174,6 @@ const TechnologyCard = ({
 
             <p className="description">{description}</p>
 
-            {/* Notes Section */}
             <TechnologyNotes
                 notes={notes || ''}
                 onNotesChange={onNotesChange}
